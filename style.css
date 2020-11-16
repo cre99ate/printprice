@@ -86,16 +86,13 @@ select{
     width: 200px;
     height: 30px;    
 }
-.layer3{    
+.method{    
     display: flex;
     flex-direction: row;
     padding: 20px 20px;
     width: 100%;    
     justify-content: center;
 
-}
-.method{
-    padding: 0 20px 0;
 }
 .infonumber{
     display: flex;
