@@ -119,71 +119,71 @@
                 </div>
                 <div id="hide-cloth" style="display: none;">
                     <div id="hide-cloth-1">
-                        <input type="radio" id='cloth1' name="radio-method" value="폭30">
+                        <input type="radio" id='cloth1' name="radio-method" value="cloth_30">
                         <label for='cloth1'>30폭</label>
                     </div>
                     <div id="hide-cloth-2">
-                        <input type="radio" id='cloth2' name="radio-method" value="폭40">
+                        <input type="radio" id='cloth2' name="radio-method" value="cloth_40">
                         <label for='cloth2'>40폭</label>
                     </div>
                     <div id="hide-cloth-3">
-                        <input type="radio" id='cloth3' name="radio-method" value="폭50">
+                        <input type="radio" id='cloth3' name="radio-method" value="cloth_50">
                         <label for='cloth3'>50폭</label>
                     </div>
                     <div id="hide-cloth-4">
-                        <input type="radio" id='cloth4' name="radio-method" value="폭60">
+                        <input type="radio" id='cloth4' name="radio-method" value="cloth_60">
                         <label for='cloth4'>60폭</label>
                     </div>
                     <div id="hide-cloth-5">
-                        <input type="radio" id='cloth5' name="radio-method" value="폭70">
+                        <input type="radio" id='cloth5' name="radio-method" value="cloth_70">
                         <label for='cloth5'>70폭</label>
                     </div>
                     <div id="hide-cloth-6">
-                        <input type="radio" id='cloth6' name="radio-method" value="폭80">
+                        <input type="radio" id='cloth6' name="radio-method" value="cloth_80">
                         <label for='cloth6'>80폭</label>
                     </div>
                     <div id="hide-cloth-7">
-                        <input type="radio" id='cloth7' name="radio-method" value="폭90">
+                        <input type="radio" id='cloth7' name="radio-method" value="cloth_90">
                         <label for='cloth7'>90폭</label>
                     </div>
                     <div id="hide-cloth-8">
-                        <input type="radio" id='cloth8' name="radio-method" value="폭100">
+                        <input type="radio" id='cloth8' name="radio-method" value="cloth_100">
                         <label for='cloth8'>100폭</label>
                     </div>
                     <div id="hide-cloth-9">
-                        <input type="radio" id='cloth9' name="radio-method" value="폭110">
+                        <input type="radio" id='cloth9' name="radio-method" value="cloth_110">
                         <label for='cloth9'>110폭</label>
                     </div>
                     <div id="hide-cloth-10">
-                        <input type="radio" id='cloth10' name="radio-method" value="폭120">
+                        <input type="radio" id='cloth10' name="radio-method" value="cloth_120">
                         <label for='cloth10'>120폭</label>
                     </div>
                     <div id="hide-cloth-11">
-                        <input type="radio" id='cloth11' name="radio-method" value="폭127">
+                        <input type="radio" id='cloth11' name="radio-method" value="cloth_127">
                         <label for='cloth11'>127폭</label>
                     </div>
                     <div id="hide-cloth-12">
-                        <input type="radio" id='cloth12' name="radio-method" value="폭130">
+                        <input type="radio" id='cloth12' name="radio-method" value="cloth_130">
                         <label for='cloth12'>130폭</label>
                     </div>
                     <div id="hide-cloth-13">
-                        <input type="radio" id='cloth13' name="radio-method" value="폭137">
+                        <input type="radio" id='cloth13' name="radio-method" value="cloth_137">
                         <label for='cloth13'>137폭</label>
                     </div>
                     <div id="hide-cloth-14">
-                        <input type="radio" id='cloth14' name="radio-method" value="폭140">
+                        <input type="radio" id='cloth14' name="radio-method" value="cloth_140">
                         <label for='cloth14'>140폭</label>
                     </div>
                     <div id="hide-cloth-15">
-                        <input type="radio" id='cloth15' name="radio-method" value="폭150">
+                        <input type="radio" id='cloth15' name="radio-method" value="cloth_150">
                         <label for='cloth15'>150폭</label>
                     </div>
                     <div id="hide-cloth-16">
-                        <input type="radio" id='cloth16' name="radio-method" value="폭160">
+                        <input type="radio" id='cloth16' name="radio-method" value="cloth_160">
                         <label for='cloth16'>160폭</label>
                     </div>
                     <div id="hide-cloth-17">
-                        <input type="radio" id='cloth17' name="radio-method" value="폭180">
+                        <input type="radio" id='cloth17' name="radio-method" value="cloth_180">
                         <label for='cloth17'>180폭</label>
                     </div>
                 </div>
@@ -337,14 +337,14 @@
                         }
                     }
             }
-            
+
             if (imageWidth === "" || imageLength === "") {
                 alert('치수를 기입하세요');
             } else if (selected_paper === null || selected_paper === '원단종류') {
                 alert('원단종류를 선택하세요');
             } else {
                
-                console.log(imageWidth, imageLength, imageEa, selected_paper, selected_method);
+                Price(imageWidth, imageLength, imageEa, selected_paper, selected_method);
             }
         });
     </script>

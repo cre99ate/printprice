@@ -261,13 +261,13 @@ mesh_flex_big.uv_cwc = new Paper_frame( 0, 0, 0, 0 );
 //현수막 90폭 미만 cloth_90
 const cloth_90 = new Object(); // 기본m단가 : basic, 1미터미만단가 : meter1, 2미터 : meter2, 3미터 : meter3, 4미터 : meter4, 5미터 : meter5
 cloth_90.water = new Paper_cloth( 2000, 4000, 6000, 7000, 8000, 10000);
-cloth_90.week_solvent = new Paper_frame( 0, 0, 0, 0, 0, 0 );
-cloth_90.solvent = new Paper_frame( 0, 0, 0, 0, 0, 0 );
-cloth_90.latex = new Paper_frame( 0, 0, 0, 0, 0, 0 );
-cloth_90.uv_w = new Paper_frame( 0, 0, 0, 0, 0, 0 );
-cloth_90.uv_c = new Paper_frame( 0, 0, 0, 0, 0, 0 );
-cloth_90.uv_cw = new Paper_frame( 0, 0, 0, 0, 0, 0 );
-cloth_90.uv_cwc = new Paper_frame( 0, 0, 0, 0, 0, 0 );
+cloth_90.week_solvent = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
+cloth_90.solvent = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
+cloth_90.latex = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
+cloth_90.uv_w = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
+cloth_90.uv_c = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
+cloth_90.uv_cw = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
+cloth_90.uv_cwc = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
 
 //현수막 100폭 cloth_100
 const cloth_100 = new Object(); // 기본m단가 : basic, 1미터미만단가 : meter1, 2미터 : meter2, 3미터 : meter3, 4미터 : meter4, 5미터 : meter5
@@ -305,21 +305,21 @@ cloth_110.uv_cwc = new Paper_frame( 0, 0, 0, 0, 0, 0 );
 //현수막 120폭 cloth_120
 const cloth_120 = new Object(); // 기본m단가 : basic, 1미터미만단가 : meter1, 2미터 : meter2, 3미터 : meter3, 4미터 : meter4, 5미터 : meter5
 cloth_120.water = new Paper_cloth( 3500, 5500, 9000, 12000, 14000, 17500);
-cloth_120.week_solvent = new Paper_frame( 0, 0, 0, 0, 0, 0 );
-cloth_120.solvent = new Paper_frame( 0, 0, 0, 0, 0, 0 );
-cloth_120.latex = new Paper_frame( 0, 0, 0, 0, 0, 0 );
-cloth_120.uv_w = new Paper_frame( 0, 0, 0, 0, 0, 0 );
-cloth_120.uv_c = new Paper_frame( 0, 0, 0, 0, 0, 0 );
-cloth_120.uv_cw = new Paper_frame( 0, 0, 0, 0, 0, 0 );
-cloth_120.uv_cwc = new Paper_frame( 0, 0, 0, 0, 0, 0 );
+cloth_120.week_solvent = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
+cloth_120.solvent = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
+cloth_120.latex = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
+cloth_120.uv_w = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
+cloth_120.uv_c = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
+cloth_120.uv_cw = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
+cloth_120.uv_cwc = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
 
 //현수막 127폭 cloth_127
 const cloth_127 = new Object(); // 기본m단가 : basic, 1미터미만단가 : meter1, 2미터 : meter2, 3미터 : meter3, 4미터 : meter4, 5미터 : meter5
 cloth_127.water = new Paper_cloth( 4000, 6000, 10000, 13000, 16000, 20000);
-cloth_127.week_solvent = new Paper_frame( 0, 0, 0, 0, 0, 0 );
-cloth_127.solvent = new Paper_frame( 0, 0, 0, 0, 0, 0 );
-cloth_127.latex = new Paper_frame( 0, 0, 0, 0, 0, 0 );
-cloth_127.uv_w = new Paper_frame( 0, 0, 0, 0, 0, 0 );
+cloth_127.week_solvent = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
+cloth_127.solvent = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
+cloth_127.latex = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
+cloth_127.uv_w = new Paper_cloth( 0, 0, 0, 0, 0, 0 );
 cloth_127.uv_c = new Paper_frame( 0, 0, 0, 0, 0, 0 );
 cloth_127.uv_cw = new Paper_frame( 0, 0, 0, 0, 0, 0 );
 cloth_127.uv_cwc = new Paper_frame( 0, 0, 0, 0, 0, 0 );
@@ -451,10 +451,122 @@ console.log(Paper_cloth_final['cloth_127']['water']['meter3']);
 
 // console.log(Paper_sheet_final);
 
-
+// paperType, calCulate, metHod, imageWidth, imageLength, coUnt
 // Price('수성', '현수막', 90, 500, 10, '동일데이터', '저가', '폭90' );
-function Price(paperType, calCulate, metHod, imageWidth, imageLength, coUnt, printWidth) {
+
+function Price( imageWidth, imageLength, imageEa, selected_paper, selected_method ) {
+    
+    let ink_water;
+    let ink_week_solvent;
+    let ink_solvent;
+    let ink_latex;
+    let ink_uv_c;
+    let ink_uv_cw;
+    let ink_uv_cwc;
+    let ink_uv_w;
+
+    if ( selected_paper === "대형현수막" ){
+
+    } else if ( selected_paper === "일반현수막" ){
+
+        let x = parseInt(imageLength / 100); //m값구하기
+        let y = imageLength % 100; //나머지값구하기
+        let z = Math.ceil( y / 10 ); //나머지값(원래는 *10을해서 같은자리를 만들겠지만 증감구간만 구하면 되기 때문에 생략함)
+        // let end_price; //리턴할 값
+
+        let m = 'meter' + x;
+        let n = 'meter' + (x + 1);
+
+        if (x < 5) {
+
+            let water_one = Paper_cloth_final[selected_method]['water'][m];
+            let water_two = Paper_cloth_final[selected_method]['water'][n];
+            let week_solvent_one = Paper_cloth_final[selected_method]['week_solvent'][m];
+            let week_solvent_two = Paper_cloth_final[selected_method]['week_solvent'][n];
+            let solvent_one = Paper_cloth_final[selected_method]['solvent'][m];
+            let solvent_two = Paper_cloth_final[selected_method]['solvent'][n];
+            let latex_one = Paper_cloth_final[selected_method]['latex'][m];
+            let latex_two = Paper_cloth_final[selected_method]['latex'][n];
+            let uv_c_one = Paper_cloth_final[selected_method]['uv_c'][m];
+            let uv_c_two = Paper_cloth_final[selected_method]['uv_c'][n];
+            let uv_cw_one = Paper_cloth_final[selected_method]['uv_cw'][m];
+            let uv_cw_two = Paper_cloth_final[selected_method]['uv_cw'][n];
+            let uv_cwc_one = Paper_cloth_final[selected_method]['uv_cwc'][m];
+            let uv_cwc_two = Paper_cloth_final[selected_method]['uv_cwc'][n];
+            let uv_w_one = Paper_cloth_final[selected_method]['uv_w'][m];
+            let uv_w_two = Paper_cloth_final[selected_method]['uv_w'][n];
+
+            y === 0 ? ink_water = water_one : ink_water = water_one + (z * (water_two - water_one) / 10);  //정치수가 나오면                
+            y === 0 ? ink_week_solvent = week_solvent_one : ink_week_solvent = week_solvent_one + (z * (week_solvent_two - week_solvent_one) / 10);
+            y === 0 ? ink_solvent = solvent_one : ink_solvent = solvent_one + (z * (solvent_two - solvent_one) / 10);
+            y === 0 ? ink_latex = latex_one : ink_latex = latex_one + (z * (latex_two - latex_one) / 10);
+            y === 0 ? ink_uv_c = uv_c_one : ink_uv_c = uv_c_one + (z * (uv_c_two - uv_c_one) / 10);
+            y === 0 ? ink_uv_cw = uv_cw_one : ink_uv_cw = uv_cw_one + (z * (uv_cw_two - uv_cw_one) / 10);
+            y === 0 ? ink_uv_cwc = uv_cwc_one : ink_uv_cwc = uv_cwc_one + (z * (uv_cwc_two - uv_cwc_one) / 10);
+            y === 0 ? ink_uv_w = uv_w_one : ink_uv_w = uv_w_one + (z * (uv_w_two - uv_w_one) / 10);
+
+        } else {
+            let p = Math.ceil(imageLength / 10) / 10 //예로 434cm경우 일의자리에서 올림한후 나누기 100을하면 4.4가 되어 단가와 바로 곱하면 됨             
+            ink_water = p * Paper_cloth_final['water'][selected_method]['basic'];
+            ink_week_solvent = p * Paper_cloth_final['week_solvent'][selected_method]['basic'];
+            ink_solvent = p * Paper_cloth_final['solvent'][selected_method]['basic'];
+            ink_latex = p * Paper_cloth_final['latex'][selected_method]['basic'];
+            ink_uv_c = p * Paper_cloth_final['uv_c'][selected_method]['basic'];
+            ink_uv_cw = p * Paper_cloth_final['uv_cw'][selected_method]['basic'];
+            ink_uv_cwc = p * Paper_cloth_final['uv_cwc'][selected_method]['basic'];
+            ink_uv_w = p * Paper_cloth_final['uv_w'][selected_method]['basic'];
+
+        }
+        
+
+        WritePrice( ink_water, ink_week_solvent, ink_solvent, ink_latex, ink_uv_c, ink_uv_cw, ink_uv_cwc, ink_uv_w);
+
+
+    } else if ( selected_paper === "동일저가" || selected_paper === "동일보급" ){
+
+    } else if ( selected_paper === "조명후렉스" || selected_paper === "그레이후렉스" || selected_paper === "메쉬천" ){
+    
+    } else {
+
+    }
+}
+
+// 웹에 입력하기
+function WritePrice( ink_water, ink_week_solvent, ink_solvent, ink_latex, ink_uv_c, ink_uv_cw, ink_uv_cwc, ink_uv_w ){
+    
+    ink_water === undefined ?  this.ink_water = 0 : this.ink_water = numberWithCommas(ink_water);
+    ink_week_solvent === undefined ?  this.ink_week_solvent = 0 : this.ink_week_solvent = numberWithCommas(ink_week_solvent);
+    ink_solvent === undefined ?  this.ink_solvent = 0 : this.ink_solvent = numberWithCommas(ink_solvent);
+    ink_latex === undefined ?  this.ink_latex = 0 : this.ink_latex = numberWithCommas(ink_latex);
+    ink_uv_c === undefined ?  this.ink_uv_c = 0 : this.ink_uv_c = numberWithCommas(ink_uv_c);
+    ink_uv_cw === undefined ?  this.ink_uv_cw = 0 : this.ink_uv_cw = numberWithCommas(ink_uv_cw);
+    ink_uv_cwc === undefined ?  this.ink_uv_cwc = 0 : this.ink_uv_cwc = numberWithCommas(ink_uv_cwc);
+    ink_uv_w === undefined ?  this.ink_uv_w = 0 : this.ink_uv_w = numberWithCommas(ink_uv_w);
+    
+    let price_data =  '<li>' + this.ink_water + '원</li><li>' + this.ink_week_solvent + '원</li><li>'
+        + this.ink_solvent + '원</li><li>' + this.ink_latex + '원</li><li>' + this.ink_uv_c + '원</li><li>'
+        + this.ink_uv_cw + '원</li><li>' + this.ink_uv_cwc + '원</li><li>' + this.ink_uv_w + '원</li><li>';
+
+    document.getElementsByTagName('ul')[1].innerHTML = price_data;
+
+
+}
+
+function Prddice( imageWidth, imageLength, imageEa, selected_paper, selected_method ) {
     //잉크종류, 원단종류, 가로, 세로, 장수, 계산방법, 마감, 출력원단폭
+    if ( selected_paper === "대형현수막" ){
+
+    } else if ( selected_paper === "일반현수막" ){
+
+        console.log(Paper_cloth_final[selected_method]['water']['meter3']);
+
+    } else if ( selected_paper === "동일저가" || selected_paper === "동일보급" ){
+
+    } else if ( selected_paper === "조명후렉스" || selected_paper === "그레이후렉스" || selected_paper === "메쉬천" ){
+    
+    } else {
+
+    }
 
     let ea_price, end_price; // 개당단가, 최종가격
 
@@ -544,34 +656,7 @@ function Price(paperType, calCulate, metHod, imageWidth, imageLength, coUnt, pri
 
 }
 
-function Colthprint(inkType, imageLength, printWidth) { //a구하려는숫자, b는 출력원단폭
-    //만약 a 가 443이면
-    // 4미터가격 + 4미터와 5미터간의 10등분의 값을 더함
-    //우선 미터구하기
-    let x = parseInt(imageLength / 100); //m값구하기
-    let y = imageLength % 100; //나머지값구하기
-    let z = Math.ceil(y / 10); //나머지값(원래는 *10을해서 같은자리를 만들겠지만 증감구간만 구하면 되기 때문에 생략함)
-    let end_price; //리턴할 값
 
-    let m = '미터' + x;
-    let n = '미터' + (x + 1);
-
-    if (x < 5) {
-        let o = priceEA['현수막'][inkType][printWidth][m];
-        let p = priceEA['현수막'][inkType][printWidth][n];
-        if (y === 0) { //정치수가 나오면                
-            end_price = o;
-        } else { //정치수외에 나머지cm가 있다면
-            end_price = o + (z * (p - o) / 10);
-        }
-    } else {
-        let p = Math.ceil(imageLength / 10) / 10 //예로 434cm경우 일의자리에서 올림한후 나누기 100을하면 4.4가 되어 단가와 바로 곱하면 됨
-        let q = priceEA['현수막'][inkType][printWidth]['기본가'];
-        end_price = p * q;
-    }
-    console.log('현수막일반계산법: ' + end_price);
-    return end_price;
-}
 
 //현수막동일데이터 단가구하기
 function Colthsamedata(inkType, imageLength, coUnt, metHod) {
