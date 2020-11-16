@@ -102,15 +102,13 @@ select{
     background-color: beige;
 }
 .ink{
-    padding: 5px 0;    
+    padding: 5px 0; 
+    text-align: right;   
 }
 
 li{
     list-style: none;
     padding: 3px 10px ;
-}
-.ink.price{
-    text-align: right;
 }
 
 .input{
