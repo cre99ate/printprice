@@ -201,14 +201,14 @@
                 <li>유브이(w)</li>
             </ul>
             <ul class="ink price">
-                <li>5,000원</li>
-                <li>8,500원</li>
-                <li>12,000원</li>
-                <li>15,000원</li>
-                <li>12,500원</li>
-                <li>13,500원</li>
-                <li>15,000원</li>
-                <li>12,500원</li>
+                <li>원</li>
+                <li>원</li>
+                <li>원</li>
+                <li>원</li>
+                <li>원</li>
+                <li>원</li>
+                <li>원</li>
+                <li>원</li>
             </ul>
         </div>
         <div class="input">
@@ -233,6 +233,8 @@
         const option_cloth = document.getElementsByName('option-cloth');
         const option_sheet = document.getElementsByName('option-sheet');
 
+        let selected_value = null;
+
         select_paper.addEventListener('change', function () {
 
             let select_index;
@@ -245,7 +247,7 @@
             selected_paper = selected_option[select_index].value;
 
             let selected_className = selected_option[select_index].className; //원단 클래스네임
-            let selected_value = selected_option[select_index].value;
+            selected_value = selected_option[select_index].value;
 
             if (selected_className === 'option-frame') {
                 
@@ -280,21 +282,16 @@
                 } else if ( selected_value === '대형현수막' ){
 
                     for (let i=0; i < 17; i++){ //현수막 원단 종류개수(총 17건)
-
                         let clothIndex = 'hide-cloth-' + (i+1);                        
                         document.getElementById(clothIndex).style.display = "none";
-                        }                        
+                        }                                             
+                
                 } else {
                     for (let i=0; i < 17; i++){ //현수막 원단 종류개수(총 17건)
-
                     let clothIndex = 'hide-cloth-' + (i+1);                        
                     document.getElementById(clothIndex).style.display = "block";
-}                        
-
+                    }   
                 }
-
-                
-
 
             } else if (selected_className === 'option-sheet') {
                 
@@ -330,30 +327,24 @@
             const imageLength = document.getElementById('height-print').value;
             const imageEa = document.getElementById('ea-print').value;
 
-            for (let i = 0; i < radio_coat.length; i++) {
-                if (radio_coat[i].checked === true) {
-                    console.log(radio_coat[i].value)
-                    selected_coat = radio_coat[i].value;
-                    break;
-                } else {
-                    selected_coat = null;
-                }
+            
+            if ( selected_value === '대형현수막' ){
+                selected_method = null;
+            } else {
+                for (let i = 0; i < radio_method.length; i++) {
+                    if (radio_method[i].checked === true) {                    
+                            selected_method = radio_method[i].value;
+                        }
+                    }
             }
-            for (let i = 0; i < radio_frame.length; i++) {
-                if (radio_frame[i].checked === true) {
-                    selected_frame = radio_frame[i].value;
-                    break;
-                } else {
-                    selected_frame = null
-                }
-            }
-
+            
             if (imageWidth === "" || imageLength === "") {
                 alert('치수를 기입하세요');
             } else if (selected_paper === null || selected_paper === '원단종류') {
                 alert('원단종류를 선택하세요');
             } else {
-                console.log(imageWidth, imageLength, imageEa, selected_paper, selected_coat, selected_frame);
+               
+                console.log(imageWidth, imageLength, imageEa, selected_paper, selected_method);
             }
         });
     </script>
