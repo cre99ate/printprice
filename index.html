@@ -4,10 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="new-main.js"></script>
-
-
+    <link rel="stylesheet" href="style.css">  
     <title>출력물계산기</title>
 </head>
 
@@ -35,7 +32,7 @@
                 <label>수량 <input class="text_box" type="number" min=1 id="ea-print" name="print-info" value="1">
                     장</label>
                 <p></p>
-                <p id="hebe">헤베 :</p>
+                <p>헤베 :  <a id="hebe"></a></p>
             </div>
             <div class="clear">
                 <input type="button" id="clear_btn" value="입력초기화">
@@ -43,310 +40,377 @@
         </div>
         <div class="workselect">
             <div class='select'>
-                <select id="select-paper">
+                <select id="sel-paper">
                     <option class='option-top' value="원단선택" selected>원단선택</option>
                     <optgroup label="후렉스">
-                        <option class='option-frame' value="조명후렉스">조명후렉스</option>
-                        <option class='option-frame' value="그레이후렉스">그레이후렉스</option>
-                        <option class='option-frame' value="메쉬천">메쉬천</option>
+                        <option class='option frame' value="조명후렉스">조명후렉스</option>
+                        <option class='option frame' value="그레이후렉스">그레이후렉스</option>
+                        <option class='option frame' value="메쉬천">메쉬천</option>
                     </optgroup>
-                    <optgroup label="현수막">
-                        <option class='option-cloth' value="일반현수막">일반현수막</option>
-                        <option class='option-cloth' value="대형현수막">대형현수막</option>
-                        <option class='option-cloth' value="동일저가">동일데이터-저가</option>
-                        <option class='option-cloth' value="동일보급">동일데이터-보급</option>
+                    <optgroup label="현수막/텐트천">
+                        <option class='option cloth' value="현수막">현수막</option>
+                        <option class='option clothBig' value="대형현수막">대형현수막</option>
+                        <option class='option cloth' value="텐트천">텐트천</option>
+                        <option class='option clothBig' value="대형텐트천">대형텐트천</option>
+                        <option class='option sameData' value="동일저가">동일데이터_저가</option>
+                        <option class='option sameData' value="동일보급">동일데이터_보급</option>
                     </optgroup>
                     <optgroup label="수성">
-                        <option class='option-sheet' value="유포지">유포지</option>
-                        <option class='option-sheet' value="유포그레이">유포그레이</option>
-                        <option class='option-sheet' value="캘지">캘지</option>
-                        <option class='option-sheet' value="캘지그레이">유포그레이</option>
-                        <option class='option-sheet' value="패트지">패트지</option>
-                        <option class='option-sheet' value="와이드칼라">와이트칼라</option>
+                        <option class='option sheet' value="유포지">유포지</option>
+                        <option class='option sheet' value="유포그레이">유포그레이</option>
+                        <option class='option sheet' value="캘지">캘지</option>
+                        <option class='option sheet' value="캘그레이">캘그레이</option>                        
+                        <option class='option sheet' value="패트지">패트지</option>
+                        <option class='option sheet' value="와이드칼라">와이트칼라</option>
                     </optgroup>
                     <optgroup label="시트">
-                        <option class='option-sheet' value="일반시트">일반시트</option>
-                        <option class='option-sheet' value="철판시트">철판시트</option>
-                        <option class='option-sheet' value="차량시트">차량시트</option>
-                        <option class='option-sheet' value="조명시트">조명시트</option>
-                        <option class='option-sheet' value="투명시트">투명시트</option>
-                        <option class='option-sheet' value="엠보시트">엠보시트</option>
-                        <option class='option-sheet' value="타공채널시트">타공채널시트</option>
-                        <option class='option-sheet' value="타공썬팅시트">타공썬팅시트</option>
+                        <option class='option sheet' value="일반시트">일반시트</option>
+                        <option class='option sheet' value="철판시트">철판시트</option>
+                        <option class='option sheet' value="차량시트">차량시트</option>
+                        <option class='option sheet' value="조명시트">조명용시트</option>
+                        <option class='option sheet' value="투명시트">투명시트</option>
+                        <option class='option sheet' value="엠보시트">엠보시트</option>
+                        <option class='option sheet' value="고투명점착시트">고투명점착시트</option>
+                        <option class='option sheet' value="고투명비점착시트">고투명비점착시트</option>
+                        <option class='option sheet' value="타공채널시트">타공채널시트</option>
+                        <option class='option sheet' value="타공썬팅시트">타공썬팅시트</option>
+                        <option class='option sheet' value="반사시트">반사시트</option>
+                        <option class='option rubber' value="고무자석">고무자석</option>
                     </optgroup>
                 </select>
             </div>
+            
             <div class='method'>
-                <div id="hide-coat" style="display: none;">
-                    <div>
-                        <input type="radio" id='coat1' name="radio-method" value="출력만">
-                        <label for='coat1'>출력만(코팅x)</label><br>
-                    </div>
-                    <div>
-                        <input type="radio" id='coat2' name="radio-method" value="무광코팅">
-                        <label for='coat2'>무광코팅</label><br>
-                    </div>
-                    <div>
-                        <input type="radio" id='coat3' name="radio-method" value="유광코팅">
-                        <label for='coat3'>유광코팅</label><br>
-                    </div>
-                    <div>
-                        <input type="radio" id='coat4' name="radio-method" value="유브이코팅">
-                        <label for='coat4'>유브이코팅</label><br>
-                    </div>
-                    <div>
-                        <input type="radio" id='coat5' name="radio-method" value="양면코팅">
-                        <label for='coat5'>양면코팅</label>
-                    </div>
+                <div id="hide-coat" style="display: none;">               
+                    <select id='sel-coat'>                                
+                        <option  class="selcoat" selected="selected">방법선택</option>
+                        <option  class="selcoat" value="0">출력만(코팅x)</option>
+                        <option  class="selcoat" value="1">무광코팅</option>
+                        <option  class="selcoat" value="2">유광코팅</option>
+                        <option  class="selcoat" value="3">유브이코팅</option>                            
+                        <option  class="selcoat" value="4">양면코팅</option>                                                    
+                    </select>                
                 </div>
-                <div id="hide-frame" style="display: none;">
-                    <div>
-                        <input type="radio" id='frame1' name="radio-method" value="출력일반">
-                        <label for='frame1'>출력만(일반)</label><br>
-                    </div>
-                    <div>
-                        <input type="radio" id='frame2' name="radio-method" value="출력풀칼라">
-                        <label for='frame2'>출력만(풀칼라)</label><br>
-                    </div>
-                    <div>
-                        <input type="radio" id='frame3' name="radio-method" value="제작일반">
-                        <label for='frame3'>후렘제작(일반)</label><br>
-                    </div>
-                    <div>
-                        <input type="radio" id='frame4' name="radio-method" value="제작풀칼라">
-                        <label for='frame4'>후렘제작(풀칼라)</label>
-                    </div>
+                <div id="hide-frame" style="display: none;">                
+                    <select id='sel-frame'>                                
+                        <!-- 0_출력만 1_출력만(장폭) 2_후렘제작  3_후렘제작(장폭) 4_출력만(누끼) 5_출력만(장폭-누끼) 6_후렘제작(누끼)  7_후렘제작(장폭-누끼) -->
+                        <option  class="selframe" selected="selected" >선택사항</option>
+                        <option  class="selframe" value="0">출력만</option>
+                        <option  class="selframe" value="2">후레임제작</option>
+                        <option  class="selframe" value="4">출력만(풀누끼)</option>
+                        <option  class="selframe" value="6">후레임제작(풀누끼)</option>                                                
+                    </select>                
                 </div>
-                <div id="hide-cloth" style="display: none;">
-                    <div id="hide-cloth-1">
-                        <input type="radio" id='cloth1' name="radio-method" value="cloth_30">
-                        <label for='cloth1'>30폭</label>
-                    </div>
-                    <div id="hide-cloth-2">
-                        <input type="radio" id='cloth2' name="radio-method" value="cloth_40">
-                        <label for='cloth2'>40폭</label>
-                    </div>
-                    <div id="hide-cloth-3">
-                        <input type="radio" id='cloth3' name="radio-method" value="cloth_50">
-                        <label for='cloth3'>50폭</label>
-                    </div>
-                    <div id="hide-cloth-4">
-                        <input type="radio" id='cloth4' name="radio-method" value="cloth_60">
-                        <label for='cloth4'>60폭</label>
-                    </div>
-                    <div id="hide-cloth-5">
-                        <input type="radio" id='cloth5' name="radio-method" value="cloth_70">
-                        <label for='cloth5'>70폭</label>
-                    </div>
-                    <div id="hide-cloth-6">
-                        <input type="radio" id='cloth6' name="radio-method" value="cloth_80">
-                        <label for='cloth6'>80폭</label>
-                    </div>
-                    <div id="hide-cloth-7">
-                        <input type="radio" id='cloth7' name="radio-method" value="cloth_90">
-                        <label for='cloth7'>90폭</label>
-                    </div>
-                    <div id="hide-cloth-8">
-                        <input type="radio" id='cloth8' name="radio-method" value="cloth_100">
-                        <label for='cloth8'>100폭</label>
-                    </div>
-                    <div id="hide-cloth-9">
-                        <input type="radio" id='cloth9' name="radio-method" value="cloth_110">
-                        <label for='cloth9'>110폭</label>
-                    </div>
-                    <div id="hide-cloth-10">
-                        <input type="radio" id='cloth10' name="radio-method" value="cloth_120">
-                        <label for='cloth10'>120폭</label>
-                    </div>
-                    <div id="hide-cloth-11">
-                        <input type="radio" id='cloth11' name="radio-method" value="cloth_127">
-                        <label for='cloth11'>127폭</label>
-                    </div>
-                    <div id="hide-cloth-12">
-                        <input type="radio" id='cloth12' name="radio-method" value="cloth_130">
-                        <label for='cloth12'>130폭</label>
-                    </div>
-                    <div id="hide-cloth-13">
-                        <input type="radio" id='cloth13' name="radio-method" value="cloth_137">
-                        <label for='cloth13'>137폭</label>
-                    </div>
-                    <div id="hide-cloth-14">
-                        <input type="radio" id='cloth14' name="radio-method" value="cloth_140">
-                        <label for='cloth14'>140폭</label>
-                    </div>
-                    <div id="hide-cloth-15">
-                        <input type="radio" id='cloth15' name="radio-method" value="cloth_150">
-                        <label for='cloth15'>150폭</label>
-                    </div>
-                    <div id="hide-cloth-16">
-                        <input type="radio" id='cloth16' name="radio-method" value="cloth_160">
-                        <label for='cloth16'>160폭</label>
-                    </div>
-                    <div id="hide-cloth-17">
-                        <input type="radio" id='cloth17' name="radio-method" value="cloth_180">
-                        <label for='cloth17'>180폭</label>
-                    </div>
+                <div id="hide-rubber" style="display: none;">                
+                    <select id='sel-rubber'>    
+                        <option  class="selrubber" selected="selected" >원단폭선택</option>
+                        <option  class="selrubber" value="0">60폭</option>
+                        <option  class="selrubber" value="1">100폭</option>                        
+                    </select>                
+                </div>
+                <div id="hide-clothBig" style="display: none;">                
+                    <select id='sel-clothBig'>    
+                        <option  class="selclothBig" selected="selected" >선택사항없음</option>                        
+                    </select>                
+                </div>
+                <div id="hide-sameData" style="display: none;">                
+                    <select id='sel-sameData'>                            
+                        <option  class="selsameData" selected="selected">원단폭선택</option>
+                        <option  class="selsameData" >70폭</option>
+                        <option  class="selsameData" >90폭</option>                        
+                    </select>                
+                </div>
+                <div id="hide-cloth" style="display: none;">                    
+                    <select id="sel-cloth">
+                        <option class="selcloth" selected="selected">원단폭선택</option>
+                        <option class="selcloth" value="30폭">30폭</option>
+                        <option class="selcloth" value="40폭">40폭</option>
+                        <option class="selcloth" value="50폭">50폭</option>
+                        <option class="selcloth" value="60폭">60폭</option>
+                        <option class="selcloth" value="70폭">70폭</option>
+                        <option class="selcloth" value="80폭">80폭</option>
+                        <option class="selcloth" value="90폭">90폭</option>
+                        <option class="selcloth" value="100폭">100폭</option>
+                        <option class="selcloth" value="106폭">106폭</option>
+                        <option class="selcloth" value="110폭">110폭</option>
+                        <option class="selcloth" value="120폭">120폭</option>
+                        <option class="selcloth" value="127폭">127폭</option>
+                        <option class="selcloth" value="130폭">130폭</option>
+                        <option class="selcloth" value="140폭">140폭</option>
+                        <option class="selcloth" value="152폭">152폭</option>
+                        <option class="selcloth" value="160폭">160폭</option>
+                        <option class="selcloth" value="180폭">180폭</option>
+                        <option class="selcloth" value="200폭">200폭</option>
+                        <option class="selcloth" value="250폭">250폭</option>
+                        <option class="selcloth" value="320폭">320폭</option>                        
+                    </select>                    
                 </div>
             </div>
         </div>
         <div class="infonumber">
-            <ul class="ink name">
-                <li>수성</li>
-                <li>약솔벤</li>
-                <li>강솔벤</li>
-                <li>라텍스</li>
-                <li>유브이(c)</li>
-                <li>유브이(cw)</li>
-                <li>유브이(cwc)</li>
-                <li>유브이(w)</li>
-            </ul>
-            <ul class="ink price">
-                <li>원</li>
-                <li>원</li>
-                <li>원</li>
-                <li>원</li>
-                <li>원</li>
-                <li>원</li>
-                <li>원</li>
-                <li>원</li>
-            </ul>
+            <table>
+                 <tr> <!--첫번째줄 -->
+                    <td width="200px">수성</td>
+                    <td id="p_water" width="100px" ></td>
+                    <td class="won" width="30px" >원</td>                    
+                </tr>
+                <tr> <!--2번째줄 -->
+                    <td >솔벤</td>
+                    <td id="p_solvent"></td>
+                    <td class="won">원</td>                    
+                </tr>
+                <tr> <!--3번째줄 -->
+                    <td >라텍스</td>
+                    <td id="p_latex"></td>
+                    <td class="won">원</td>                    
+                </tr>
+                <tr> <!--4번째줄 -->
+                    <td >유브이_화이트만</td>
+                    <td id="p_uvW"></td>
+                    <td class="won">원</td>                    
+                </tr>
+                <tr> <!--5번째줄 -->
+                    <td >유브이_칼라만</td>
+                    <td id="p_uvC"></td>
+                    <td class="won">원</td>                    
+                </tr>
+                <tr> <!--6번째줄 -->
+                    <td >유브이_2레이어</td>
+                    <td id="p_uvCw"></td>
+                    <td class="won">원</td>                    
+                </tr>
+                <tr> <!--7번째줄 -->
+                    <td >유브이_3레이어</td>
+                    <td id="p_uvCwc"></td>
+                    <td class="won">원</td>                    
+                </tr>
+                <tr> <!--8번째줄 -->
+                    <td >유브이_후렉스조명모드</td>
+                    <td id="p_uvCc"></td>
+                    <td class="won">원</td>                    
+                </tr>
+                <tr> <!--9번째줄 -->
+                    <td >유브이_후렉스차폐모드</td>
+                    <td id="p_uvBlack"></td>
+                    <td class="won">원</td>                    
+                </tr>
+            </table>
+            
         </div>
         <div class="input">
             <button id="btn">계산하기</button>
         </div>
     </div>
+    <script type="text/javascript" src="ss.js"></script>
     <script>
         let selected_paper = null; //원단선택값   
+
+        const sel_paper = document.getElementById("sel-paper"); //원단종류선택자                
+        const sel_opt = document.getElementsByClassName('option');
         
-        const select_paper = document.getElementById("select-paper"); //원단종류선택자                
-        const selected_option = document.getElementsByTagName('option');
-
-        const radio_method = document.getElementsByName('radio-method');
-
-        const hide_cloth = document.getElementById('hide-cloth');
-        const hide_coat = document.getElementById('hide-coat');
-        const hide_frame = document.getElementById('hide-frame');
+        const h_cloth = document.getElementById('hide-cloth');
+        const h_clothBig = document.getElementById('hide-clothBig');
+        const h_coat = document.getElementById('hide-coat');
+        const h_frame = document.getElementById('hide-frame');
+        const h_rubber = document.getElementById('hide-rubber');
+        const h_sameData = document.getElementById('hide-sameData');
 
         const clear_btn = document.getElementById('clear_btn'); //초기화버튼
 
-        const option_frame = document.getElementsByName('option-frame');
-        const option_cloth = document.getElementsByName('option-cloth');
-        const option_sheet = document.getElementsByName('option-sheet');
+        const opt_frame = document.getElementsByClassName('frame'); //원단선택각내용
+        const opt_cloth = document.getElementsByClassName('cloth');
+        const opt_clothBig = document.getElementsByClassName('clothBig');
+        const opt_sheet = document.getElementsByClassName('sheet');
+        const opt_rubber = document.getElementsByClassName('rubber');
+        const opt_sameData = document.getElementsByClassName('sameData');
 
-        let selected_value = null;
+        const sel_coat = document.getElementsByClassName('selcoat');
+        const sel_frame = document.getElementsByClassName('selframe');
+        const sel_cloth = document.getElementsByClassName('selcloth');
+        const sel_clothBig = document.getElementsByClassName('selclothBig');
+        const sel_rubber = document.getElementsByClassName('selrubber');
+        const sel_sameData = document.getElementsByClassName('selsameData');
 
-        select_paper.addEventListener('change', function () {
+        let sel_value = null;
 
-            let select_index;
+        sel_paper.addEventListener('change', function () {
 
-            for (let i = 0; i < selected_option.length; i++) {
-                if (selected_option[i].selected) {
-                    select_index = i;
-                }
-            }
-            selected_paper = selected_option[select_index].value;
+            let num;
+            for (let i = 0; i < sel_opt.length; i++) {
+                sel_opt[i].selected ? num = i : {}
+            }                
 
-            let selected_className = selected_option[select_index].className; //원단 클래스네임
-            selected_value = selected_option[select_index].value;
-
-            if (selected_className === 'option-frame') {
-                
-                hide_coat.style.display = "none";
-                hide_frame.style.display = "block";
-                hide_cloth.style.display = "none";
-
-                document.getElementById('frame1').checked = true;
-
-
-            } else if (selected_className === 'option-cloth') {
-                
-                hide_coat.style.display = "none";
-                hide_frame.style.display = "none";
-                hide_cloth.style.display = "block";
-
-                document.getElementById('cloth7').checked = true;
-
-                if ( selected_value === '동일저가' || selected_value === '동일보급'){
-
-                    
-                    for (let i=0; i < 17; i++){ //현수막 원단 종류개수(총 17건)
-
-                        let clothIndex = 'hide-cloth-' + (i+1);
-                        if ( clothIndex === 'hide-cloth-5' || clothIndex === 'hide-cloth-7' )
-                            document.getElementById(clothIndex).style.display = "block";
-                        else {
-                            document.getElementById(clothIndex).style.display = "none";
-                        }                        
-                    }
-                    
-                } else if ( selected_value === '대형현수막' ){
-
-                    for (let i=0; i < 17; i++){ //현수막 원단 종류개수(총 17건)
-                        let clothIndex = 'hide-cloth-' + (i+1);                        
-                        document.getElementById(clothIndex).style.display = "none";
-                        }                                             
-                
-                } else {
-                    for (let i=0; i < 17; i++){ //현수막 원단 종류개수(총 17건)
-                    let clothIndex = 'hide-cloth-' + (i+1);                        
-                    document.getElementById(clothIndex).style.display = "block";
-                    }   
-                }
-
-            } else if (selected_className === 'option-sheet') {
-                
-                hide_coat.style.display = "block";
-                hide_frame.style.display = "none";
-                hide_cloth.style.display = "none";
-
-                document.getElementById('coat1').checked = true;
-
+            let sel_className = sel_opt[num].className; //원단 클래스네임
+           
+            if (sel_className === 'option frame') {
+                h_coat.style.display = "none";
+                h_frame.style.display = "block";
+                h_cloth.style.display = "none";
+                h_clothBig.style.display = "none";
+                h_rubber.style.display = "none";
+                h_sameData.style.display = "none";
+            } else if (sel_className === 'option cloth') {
+                h_coat.style.display = "none";
+                h_frame.style.display = "none";
+                h_cloth.style.display = "block";
+                h_clothBig.style.display = "none";
+                h_rubber.style.display = "none";
+                h_sameData.style.display = "none";
+            } else if (sel_className === 'option clothBig') {
+                h_coat.style.display = "none";
+                h_frame.style.display = "none";
+                h_cloth.style.display = "none";
+                h_clothBig.style.display = "block";
+                h_rubber.style.display = "none";
+                h_sameData.style.display = "none";
+            } else if (sel_className === 'option sheet') {
+                h_coat.style.display = "block";
+                h_frame.style.display = "none";
+                h_cloth.style.display = "none";
+                h_clothBig.style.display = "none";
+                h_rubber.style.display = "none";
+                h_sameData.style.display = "none";
+            } else if (sel_className === 'option rubber') {
+                h_coat.style.display = "none";
+                h_frame.style.display = "none";
+                h_cloth.style.display = "none";
+                h_clothBig.style.display = "none";
+                h_rubber.style.display = "block";
+                h_sameData.style.display = "none";
+            } else if (sel_className === 'option sameData') {
+                h_coat.style.display = "none";
+                h_frame.style.display = "none";
+                h_cloth.style.display = "none";
+                h_clothBig.style.display = "none";
+                h_rubber.style.display = "none";
+                h_sameData.style.display = "block";                
             } else {
-                
-                hide_coat.style.display = "none";
-                hide_frame.style.display = "none";
-                hide_cloth.style.display = "none";
+                h_coat.style.display = "none";
+                h_frame.style.display = "none";
+                h_cloth.style.display = "none";
+                h_clothBig.style.display = "none";
+                h_rubber.style.display = "none";
+                h_sameData.style.display = "none";
             }
-        })
+        });
 
         clear_btn.addEventListener('click', function () {
             document.getElementById('width-print').value = "";
             document.getElementById('height-print').value = "";
             document.getElementById('ea-print').value = 1;
 
-            select_paper.selectedIndex = 0;
-            hide_coat.style.display = "none";
-            hide_frame.style.display = "none";
-            hide_cloth.style.display = "none";
-
-        })
+            sel_paper.selectedIndex = 0;
+            h_coat.style.display = "none";
+            h_frame.style.display = "none";
+            h_cloth.style.display = "none";
+            h_clothBig.style.display = "none";
+            h_rubber.style.display = "none";
+            h_sameData.style.display = "none";
+        });
 
         document.getElementById('btn').addEventListener('click', function () {
             //치수입력
-            const imageWidth = document.getElementById('width-print').value;
-            const imageLength = document.getElementById('height-print').value;
-            const imageEa = document.getElementById('ea-print').value;
+            const width = document.getElementById('width-print').value;
+            const length = document.getElementById('height-print').value;
+            const ea = document.getElementById('ea-print').value;
 
-            
-            if ( selected_value === '대형현수막' ){
-                selected_method = null;
-            } else {
-                for (let i = 0; i < radio_method.length; i++) {
-                    if (radio_method[i].checked === true) {                    
-                            selected_method = radio_method[i].value;
-                        }
-                    }
+            let paper;            
+            let mode;
+            let nameClass;
+
+            for (let i = 0; i < sel_opt.length; i++) {
+                if(sel_opt[i].selected){
+                    paper = sel_opt[i].value 
+                    nameClass = sel_opt[i].className
+                }
+            }                
+                        
+            if ( h_coat.style.display === "block"){
+                
+                for (let i = 0; i < sel_coat.length; i++) {
+                    sel_coat[i].selected ? mode = sel_coat[i].value : {}
+                }
             }
-
-            if (imageWidth === "" || imageLength === "") {
+            if ( h_frame.style.display === "block" ){
+                for (let i = 0; i < sel_frame.length; i++) {
+                    sel_frame[i].selected ? mode = sel_frame[i].value : {}
+                }
+            }
+            if( h_cloth.style.display === "block" ){
+                for (let i = 0; i < sel_cloth.length; i++) {
+                    sel_cloth[i].selected ? mode = sel_cloth[i].value : {}
+                }
+            }
+            if( h_clothBig.style.display === "block" ){
+                
+            }           
+            
+            if ( width === "" || length === "") {                
                 alert('치수를 기입하세요');
-            } else if (selected_paper === null || selected_paper === '원단종류') {
+            } else if ( sel_paper === null || sel_paper === '원단종류') {
                 alert('원단종류를 선택하세요');
             } else {
-               
-                Price(imageWidth, imageLength, imageEa, selected_paper, selected_method);
+                
+                let ink = 'water'
+                let lastData; 
+
+                if ( nameClass === 'option frame' ){
+
+                    lastData = findFrame( width, length, paper, mode )
+
+                }else if ( nameClass === 'option cloth' ){
+                    
+                    lastData = findCloth( length, paper, mode)
+
+                }else if ( nameClass === 'option clothBig' ){
+                    
+                    lastData = findClothPlus( width, length, paper )
+
+                }else if ( nameClass === 'option sameData' ){
+                    
+                    lastData = findClothSameData( length, ea, paper  )
+
+                }else if ( nameClass === 'option sheet' ){
+                    
+                    lastData = findSheet( width, length, paper, mode )
+
+                }else if ( nameClass === 'option rubber' ){
+                    
+                    lastData = findRubber( width, length, paper, rubber_width )
+
+                }
+                
+                let upLine =100; //10의 자리에서 올림
+
+                let hebe = numComma( Math.ceil( lastData.hebe * 10 ) / 10); //헤베는 소수점2자리에서 올림 해서 소수1자리까지 구함
+                let water = numComma( Math.ceil( lastData.price_water / upLine ) * upLine);
+                let solvent = numComma( Math.ceil( lastData.price_solvent / upLine ) * upLine);
+                let latex = numComma( Math.ceil( lastData.price_latex / upLine ) * upLine);
+                let uvW = numComma( Math.ceil( lastData.price_uvW / upLine ) * upLine);
+                let uvC = numComma( Math.ceil( lastData.price_uvC / upLine ) * upLine);
+                let uvCw = numComma( Math.ceil( lastData.price_uvCw / upLine ) * upLine);
+                let uvCwc = numComma( Math.ceil( lastData.price_uvCwc / upLine ) * upLine);
+                let uvCc = numComma( Math.ceil( lastData.price_uvCc / upLine ) * upLine);
+                let uvBlack = numComma( Math.ceil( lastData.price_uvBlack / upLine ) * upLine);
+
+                
+                lastData.hebe > 0 ? document.getElementById('hebe').innerText= hebe : document.getElementById('hebe').innerText= '-'
+                lastData.price_water > 0 ? document.getElementById('p_water').innerText= water : document.getElementById('p_water').innerText= '-'
+                lastData.price_solvent > 0 ? document.getElementById('p_solvent').innerText= solvent : document.getElementById('p_solvent').innerText= '-'
+                lastData.price_latex > 0 ? document.getElementById('p_latex').innerText= latex : document.getElementById('p_latex').innerText= '-'
+                lastData.price_uvW > 0 ? document.getElementById('p_uvW').innerText= uvW : document.getElementById('p_uvW').innerText= '-'
+                lastData.price_uvC > 0 ? document.getElementById('p_uvC').innerText= uvC : document.getElementById('p_uvC').innerText= '-'
+                lastData.price_uvCw > 0 ? document.getElementById('p_uvCw').innerText= uvCw : document.getElementById('p_uvCw').innerText= '-'
+                lastData.price_uvCwc > 0 ? document.getElementById('p_uvCwc').innerText= uvCwc : document.getElementById('p_uvCwc').innerText= '-'
+                lastData.price_uvCc > 0 ? document.getElementById('p_uvCc').innerText= uvCc : document.getElementById('p_uvCc').innerText= '-'
+                lastData.price_uvBlack > 0 ? document.getElementById('p_uvBlack').innerText= uvBlack : document.getElementById('p_uvBlack').innerText= '-'
+                
             }
         });
+
+        function numComma(x) { //숫자 자리에 콤마넣기
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
     </script>
 </body>
 

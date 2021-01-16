@@ -82,6 +82,27 @@ body{
     width: 100%;
 }
 
+table {
+border-collapse: collapse;
+text-align: left;
+line-height: 1.5;
+margin : 20px 10px;
+}
+table th {
+width: 150px;
+padding: 10px;
+font-weight: bold;
+vertical-align: top;
+border: 1px solid #ccc;
+}
+table td {    
+padding: 2px;
+vertical-align: top; 
+border-bottom: 1px solid #ccc;   
+text-align: right;
+}
+
+
 select{    
     width: 200px;
     height: 30px;    
@@ -100,19 +121,6 @@ select{
     justify-content: center;
     width: 100%;
     background-color: beige;
-}
-.ink{
-    padding: 5px 0;     
-    text-align: right;   
-    width: 100px;
-}
-.ink.name{
-    width: 150px;    
-}
-
-li{
-    list-style: none;
-    padding: 3px 10px ;
 }
 
 .input{
