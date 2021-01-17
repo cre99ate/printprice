@@ -374,7 +374,7 @@ function findPrice( sheet, mode ) {
         // console.log(' uvCc: ' + e)
     }
     try{
-        let uvBlack = paper[sheet]['unBlack'][mode];
+        let uvBlack = paper[sheet]['uvBlack'][mode];
         uvBlack === NaN || uvBlack === undefined    
             ? price_black = 0
             : price_uvBlack = uvBlack
