@@ -84,22 +84,31 @@ body{
 
 table {
 border-collapse: collapse;
-text-align: left;
+text-align: right;
 line-height: 1.5;
-margin : 20px 10px;
+margin : 10px 0 50px 0;
+font-size: 0.9em;
+
+}
+.tb-ink{
+    width: 150px;    
+    padding-right: 15px;
+}
+.tb-price{
+    width: 70px;    
+}
+.tb-sum{
+    width: 70px;    
 }
 table th {
-width: 150px;
-padding: 10px;
-font-weight: bold;
-vertical-align: top;
-border: 1px solid #ccc;
+    padding: 5px 15px 7px 15px;
+    font-weight: bold;    
+    border-bottom: 1px solid #ccc; 
 }
 table td {    
 padding: 2px;
 vertical-align: top; 
-border-bottom: 1px solid #ccc;   
-text-align: right;
+border-bottom: 1px solid #ccc; 
 }
 
 
@@ -125,20 +134,27 @@ select{
 
 .input{
     height: 100%;
-    background-color: #b7eb87;
+    width: 100%;
+    background-color: beige;
+    text-align: center;    
 }
 #btn {    
     background-color: #0000a0;    
     border: none;
+    border-radius: 8px;
+    margin: 12px 0px;
     color: rgb(255, 255, 255);
     text-align: center;    
-    font-size: 16px;    
+    font-size: 16px; 
+    font-weight: bold;   
     cursor: pointer;     
-    padding: 20px  ;
-    width: 300px;
+    padding: 10px  ;
+    width: 250px;
 }
 #btn:hover{
-    background-color: #000040;
+    background-color: #ff36b2;
+    border: none;
+    border-radius: 8px;
 }
 
 

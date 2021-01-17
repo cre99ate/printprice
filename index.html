@@ -22,14 +22,14 @@
     <div class="content">
         <div class="infobox">
             <div class="whinfo">
-                <label>가로 <input class="text_box" type="number" min=0 id="width-print" autofocus name="print-info"
+                <label>가로 <input class="text_box" type="number" min=0 id="width" autofocus name="print-info"
                         value="">
                     cm</label>
                 <p></p>
-                <label>세로 <input class="text_box" type="number" min=0 id="height-print" name="print-info" value="">
+                <label>세로 <input class="text_box" type="number" min=0 id="height" name="print-info" value="">
                     cm</label>
                 <p></p>
-                <label>수량 <input class="text_box" type="number" min=1 id="ea-print" name="print-info" value="1">
+                <label>수량 <input class="text_box" type="number" min=1 id="ea" name="print-info" value="1">
                     장</label>
                 <p></p>
                 <p>헤베 :  <a id="hebe"></a></p>
@@ -44,7 +44,7 @@
                     <option class='option-top' value="원단선택" selected>원단선택</option>
                     <optgroup label="후렉스">
                         <option class='option frame' value="조명후렉스">조명후렉스</option>
-                        <option class='option frame' value="그레이후렉스">그레이후렉스</option>
+                        <option class='option frame' value="비조명후렉스">비조명후렉스</option>
                         <option class='option frame' value="메쉬천">메쉬천</option>
                     </optgroup>
                     <optgroup label="현수막/텐트천">
@@ -52,8 +52,8 @@
                         <option class='option clothBig' value="대형현수막">대형현수막</option>
                         <option class='option cloth' value="텐트천">텐트천</option>
                         <option class='option clothBig' value="대형텐트천">대형텐트천</option>
-                        <option class='option sameData' value="동일저가">동일데이터_저가</option>
-                        <option class='option sameData' value="동일보급">동일데이터_보급</option>
+                        <option class='option sameData' value="동일데이터_저가">동일데이터_저가</option>
+                        <option class='option sameData' value="동일데이터_보급">동일데이터_보급</option>
                     </optgroup>
                     <optgroup label="수성">
                         <option class='option sheet' value="유포지">유포지</option>
@@ -82,10 +82,9 @@
             
             <div class='method'>
                 <div id="hide-coat" style="display: none;">               
-                    <select id='sel-coat'>                                
-                        <option  class="selcoat" selected="selected">방법선택</option>
+                    <select id='sel-coat'>                                                        
                         <option  class="selcoat" value="0">출력만(코팅x)</option>
-                        <option  class="selcoat" value="1">무광코팅</option>
+                        <option  class="selcoat" value="1" selected="selected">무광코팅</option>
                         <option  class="selcoat" value="2">유광코팅</option>
                         <option  class="selcoat" value="3">유브이코팅</option>                            
                         <option  class="selcoat" value="4">양면코팅</option>                                                    
@@ -93,17 +92,15 @@
                 </div>
                 <div id="hide-frame" style="display: none;">                
                     <select id='sel-frame'>                                
-                        <!-- 0_출력만 1_출력만(장폭) 2_후렘제작  3_후렘제작(장폭) 4_출력만(누끼) 5_출력만(장폭-누끼) 6_후렘제작(누끼)  7_후렘제작(장폭-누끼) -->
-                        <option  class="selframe" selected="selected" >선택사항</option>
-                        <option  class="selframe" value="0">출력만</option>
+                        <!-- 0_출력만 1_출력만(장폭) 2_후렘제작  3_후렘제작(장폭) 4_출력만(누끼) 5_출력만(장폭-누끼) 6_후렘제작(누끼)  7_후렘제작(장폭-누끼) -->                        
+                        <option  class="selframe" value="0" selected="selected">출력만</option>
                         <option  class="selframe" value="2">후레임제작</option>
                         <option  class="selframe" value="4">출력만(풀누끼)</option>
                         <option  class="selframe" value="6">후레임제작(풀누끼)</option>                                                
                     </select>                
                 </div>
                 <div id="hide-rubber" style="display: none;">                
-                    <select id='sel-rubber'>    
-                        <option  class="selrubber" selected="selected" >원단폭선택</option>
+                    <select id='sel-rubber'>                            
                         <option  class="selrubber" value="0">60폭</option>
                         <option  class="selrubber" value="1">100폭</option>                        
                     </select>                
@@ -114,22 +111,20 @@
                     </select>                
                 </div>
                 <div id="hide-sameData" style="display: none;">                
-                    <select id='sel-sameData'>                            
-                        <option  class="selsameData" selected="selected">원단폭선택</option>
+                    <select id='sel-sameData'>
                         <option  class="selsameData" >70폭</option>
-                        <option  class="selsameData" >90폭</option>                        
+                        <option  class="selsameData" selected="selected">90폭</option>                        
                     </select>                
                 </div>
                 <div id="hide-cloth" style="display: none;">                    
-                    <select id="sel-cloth">
-                        <option class="selcloth" selected="selected">원단폭선택</option>
+                    <select id="sel-cloth">                        
                         <option class="selcloth" value="30폭">30폭</option>
                         <option class="selcloth" value="40폭">40폭</option>
                         <option class="selcloth" value="50폭">50폭</option>
                         <option class="selcloth" value="60폭">60폭</option>
                         <option class="selcloth" value="70폭">70폭</option>
                         <option class="selcloth" value="80폭">80폭</option>
-                        <option class="selcloth" value="90폭">90폭</option>
+                        <option class="selcloth" value="90폭" selected="selected">90폭</option>
                         <option class="selcloth" value="100폭">100폭</option>
                         <option class="selcloth" value="106폭">106폭</option>
                         <option class="selcloth" value="110폭">110폭</option>
@@ -147,59 +142,63 @@
                 </div>
             </div>
         </div>
-        <div class="infonumber">
-            <table>
-                 <tr> <!--첫번째줄 -->
-                    <td width="200px">수성</td>
-                    <td id="p_water" width="100px" ></td>
-                    <td class="won" width="30px" >원</td>                    
-                </tr>
-                <tr> <!--2번째줄 -->
-                    <td >솔벤</td>
-                    <td id="p_solvent"></td>
-                    <td class="won">원</td>                    
-                </tr>
-                <tr> <!--3번째줄 -->
-                    <td >라텍스</td>
-                    <td id="p_latex"></td>
-                    <td class="won">원</td>                    
-                </tr>
-                <tr> <!--4번째줄 -->
-                    <td >유브이_화이트만</td>
-                    <td id="p_uvW"></td>
-                    <td class="won">원</td>                    
-                </tr>
-                <tr> <!--5번째줄 -->
-                    <td >유브이_칼라만</td>
-                    <td id="p_uvC"></td>
-                    <td class="won">원</td>                    
-                </tr>
-                <tr> <!--6번째줄 -->
-                    <td >유브이_2레이어</td>
-                    <td id="p_uvCw"></td>
-                    <td class="won">원</td>                    
-                </tr>
-                <tr> <!--7번째줄 -->
-                    <td >유브이_3레이어</td>
-                    <td id="p_uvCwc"></td>
-                    <td class="won">원</td>                    
-                </tr>
-                <tr> <!--8번째줄 -->
-                    <td >유브이_후렉스조명모드</td>
-                    <td id="p_uvCc"></td>
-                    <td class="won">원</td>                    
-                </tr>
-                <tr> <!--9번째줄 -->
-                    <td >유브이_후렉스차폐모드</td>
-                    <td id="p_uvBlack"></td>
-                    <td class="won">원</td>                    
-                </tr>
-            </table>
-            
-        </div>
         <div class="input">
             <button id="btn">계산하기</button>
         </div>
+        <div class="infonumber">
+            <table>
+                <th class="tb-ink">잉크종류</th>
+                <th class="tb-price">장당가격</th>
+                <th class="tb-sum">총합계</th>
+                 <tr> <!--첫번째줄 -->
+                    <td class="tb-ink">수성</td>
+                    <td class="tb-price" id="p_water"></td>
+                    <td class="tb-sum" id="ea_water"></td>                    
+                </tr>
+                <tr> <!--2번째줄 -->
+                    <td class="tb-ink">솔벤</td>
+                    <td class="tb-price" id="p_solvent"></td>
+                    <td class="tb-sum" id="ea_solvent"></td>                    
+                </tr>
+                <tr> <!--3번째줄 -->
+                    <td class="tb-ink">라텍스</td>
+                    <td class="tb-price" id="p_latex"></td>
+                    <td class="tb-sum" id="ea_latex"></td>                    
+                </tr>
+                <tr> <!--4번째줄 -->
+                    <td class="tb-ink">유브이_화이트만</td>
+                    <td class="tb-price" id="p_uvW"></td>
+                    <td class="tb-sum" id="ea_uvW"></td>                    
+                </tr>
+                <tr> <!--5번째줄 -->
+                    <td class="tb-ink">유브이_칼라만</td>
+                    <td class="tb-price" id="p_uvC"></td>
+                    <td class="tb-sum" id="ea_uvC"></td>                    
+                </tr>
+                <tr> <!--6번째줄 -->
+                    <td class="tb-ink">유브이_2레이어</td>
+                    <td class="tb-price" id="p_uvCw"></td>
+                    <td class="tb-sum" id="ea_uvCw"></td>                    
+                </tr>
+                <tr> <!--7번째줄 -->
+                    <td class="tb-ink">유브이_3레이어</td>
+                    <td class="tb-price" id="p_uvCwc"></td>
+                    <td class="tb-sum" id="ea_uvCwc"></td>                    
+                </tr>
+                <tr> <!--8번째줄 -->
+                    <td class="tb-ink">유브이_후렉스조명모드</td>
+                    <td class="tb-price" id="p_uvCc"></td>
+                    <td class="tb-sum" id="ea_uvCc"></td>                    
+                </tr>
+                <tr> <!--9번째줄 -->
+                    <td class="tb-ink">유브이_후렉스차폐모드</td>
+                    <td class="tb-price" id="p_uvBlack"></td>
+                    <td class="tb-sum" id="ea_uvBlack"></td>                    
+                </tr>
+            </table>            
+        </div>
+        <div id="err"></div>
+        
     </div>
     <script type="text/javascript" src="ss.js"></script>
     <script>
@@ -295,9 +294,9 @@
         });
 
         clear_btn.addEventListener('click', function () {
-            document.getElementById('width-print').value = "";
-            document.getElementById('height-print').value = "";
-            document.getElementById('ea-print').value = 1;
+            document.getElementById('width').value = "";
+            document.getElementById('height').value = "";
+            document.getElementById('ea').value = 1;
 
             sel_paper.selectedIndex = 0;
             h_coat.style.display = "none";
@@ -309,102 +308,187 @@
         });
 
         document.getElementById('btn').addEventListener('click', function () {
-            //치수입력
-            const width = document.getElementById('width-print').value;
-            const length = document.getElementById('height-print').value;
-            const ea = document.getElementById('ea-print').value;
+            try{
+                //치수입력
+                let width = document.getElementById('width').value;
+                let length = document.getElementById('height').value;
+                let ea = document.getElementById('ea').value;
 
-            let paper;            
-            let mode;
-            let nameClass;
+                let paper;            
+                let mode;
+                let nameClass;
 
-            for (let i = 0; i < sel_opt.length; i++) {
-                if(sel_opt[i].selected){
-                    paper = sel_opt[i].value 
-                    nameClass = sel_opt[i].className
+                for (let i = 0; i < sel_opt.length; i++) {
+                    if(sel_opt[i].selected){
+                        paper = sel_opt[i].value 
+                        nameClass = sel_opt[i].className
+                    }
+                }                
+                            
+                if ( h_coat.style.display === "block"){
+                    
+                    for (let i = 0; i < sel_coat.length; i++) {
+                        sel_coat[i].selected ? mode = sel_coat[i].value : {}
+                    }
                 }
-            }                
+                if ( h_frame.style.display === "block" ){
+                    for (let i = 0; i < sel_frame.length; i++) {
+                        sel_frame[i].selected ? mode = sel_frame[i].value : {}
+                    }
+                }
+                if( h_cloth.style.display === "block" ){
+                    for (let i = 0; i < sel_cloth.length; i++) {
+                        sel_cloth[i].selected ? mode = sel_cloth[i].value : {}
+                    }
+                }
+                if( h_clothBig.style.display === "block" ){
+                    
+                }    
+                if( h_rubber.style.display === "block" ){
+                    for (let i = 0; i < sel_rubber.length; i++) {
+                        sel_rubber[i].selected ? mode = sel_rubber[i].value : {}
+                    }
+                }         
+                
+                console.log( nameClass, paper, mode)
+
+                if ( width === "" || length === "") {                
+                    alert('치수를 기입하세요');
+                } else if ( sel_paper === null || sel_paper === '원단종류') {
+                    alert('원단종류를 선택하세요');
+                } else {
+                                        
+                    let lastData; 
+
+                    if ( nameClass === 'option frame' ){
                         
-            if ( h_coat.style.display === "block"){
-                
-                for (let i = 0; i < sel_coat.length; i++) {
-                    sel_coat[i].selected ? mode = sel_coat[i].value : {}
+                        lastData = findFrame( width, length, paper, mode )
+                        
+
+                    }else if ( nameClass === 'option cloth' ){
+                        
+                        lastData = findCloth( length, paper, mode)
+
+                    }else if ( nameClass === 'option clothBig' ){
+                        
+                        lastData = findClothPlus( width, length, paper )
+
+                    }else if ( nameClass === 'option sameData' ){
+                        
+                        lastData = findClothSameData( length, ea, paper  )
+
+                    }else if ( nameClass === 'option sheet' ){
+                        
+                        lastData = findSheet( width, length, paper, mode )
+
+                    }else if ( nameClass === 'option rubber' ){
+                        
+                        lastData = findRubber( length, paper, mode )
+
+                    }
+                    
+                    let upLine =100; //10의 자리에서 올림
+
+                    let hebe = numComma( Math.ceil( lastData.hebe * 10 ) / 10); //헤베는 소수점2자리에서 올림 해서 소수1자리까지 구함
+                    
+                    let water = numComma( Math.ceil( lastData.price_water / upLine ) * upLine);
+                    let solvent = numComma( Math.ceil( lastData.price_solvent / upLine ) * upLine);
+                    let latex = numComma( Math.ceil( lastData.price_latex / upLine ) * upLine);
+                    let uvW = numComma( Math.ceil( lastData.price_uvW / upLine ) * upLine);
+                    let uvC = numComma( Math.ceil( lastData.price_uvC / upLine ) * upLine);
+                    let uvCw = numComma( Math.ceil( lastData.price_uvCw / upLine ) * upLine);
+                    let uvCwc = numComma( Math.ceil( lastData.price_uvCwc / upLine ) * upLine);
+                    let uvCc = numComma( Math.ceil( lastData.price_uvCc / upLine ) * upLine);
+                    let uvBlack = numComma( Math.ceil( lastData.price_uvBlack / upLine ) * upLine);
+                    
+                    let water_ea = numComma( Math.ceil( lastData.price_water / upLine ) * upLine * ea );
+                    let solvent_ea = numComma( Math.ceil( lastData.price_solvent / upLine ) * upLine * ea );
+                    let latex_ea = numComma( Math.ceil( lastData.price_latex / upLine ) * upLine * ea );
+                    let uvW_ea = numComma( Math.ceil( lastData.price_uvW / upLine ) * upLine * ea );
+                    let uvC_ea = numComma( Math.ceil( lastData.price_uvC / upLine ) * upLine * ea );
+                    let uvCw_ea = numComma( Math.ceil( lastData.price_uvCw / upLine ) * upLine * ea );
+                    let uvCwc_ea = numComma( Math.ceil( lastData.price_uvCwc / upLine ) * upLine * ea );
+                    let uvCc_ea = numComma( Math.ceil( lastData.price_uvCc / upLine ) * upLine * ea );
+                    let uvBlack_ea = numComma( Math.ceil( lastData.price_uvBlack / upLine ) * upLine * ea );
+
+                    
+                    lastData.hebe > 0 
+                        ? document.getElementById('hebe').innerText= hebe 
+                        : document.getElementById('hebe').innerText= '-'
+                    
+                    if ( lastData.price_water > 0 ){ 
+                        document.getElementById('p_water').innerText= water
+                        document.getElementById('ea_water').innerText= water_ea
+                    }else{
+                        document.getElementById('p_water').innerText= '-'
+                        document.getElementById('ea_water').innerText= '-'
+                    }
+                    if ( lastData.price_solvent > 0 ){ 
+                        document.getElementById('p_solvent').innerText= solvent
+                        document.getElementById('ea_solvent').innerText= solvent_ea
+                    }else{
+                        document.getElementById('p_solvent').innerText= '-'
+                        document.getElementById('ea_solvent').innerText= '-'
+                    } 
+                    if ( lastData.price_latex > 0 ){ 
+                        document.getElementById('p_latex').innerText= latex
+                        document.getElementById('ea_latex').innerText= latex_ea
+                    }else{
+                        document.getElementById('p_latex').innerText= '-'
+                        document.getElementById('ea_latex').innerText= '-'
+                    } 
+                    if ( lastData.price_uvW > 0 ){ 
+                        document.getElementById('p_uvW').innerText= uvW
+                        document.getElementById('ea_uvW').innerText= uvW_ea
+                    }else{
+                        document.getElementById('p_uvW').innerText= '-'
+                        document.getElementById('ea_uvW').innerText= '-'
+                    } 
+                    if ( lastData.price_uvC > 0 ){ 
+                        document.getElementById('p_uvC').innerText= uvC
+                        document.getElementById('ea_uvC').innerText= uvC_ea
+                    }else{
+                        document.getElementById('p_uvC').innerText= '-'
+                        document.getElementById('ea_uvC').innerText= '-'
+                    } 
+                    if ( lastData.price_uvCw > 0 ){ 
+                        document.getElementById('p_uvCw').innerText= uvCw
+                        document.getElementById('ea_uvCw').innerText= uvCw_ea
+                    }else{
+                        document.getElementById('p_uvCw').innerText= '-'
+                        document.getElementById('ea_uvCw').innerText= '-'
+                    } 
+                    if ( lastData.price_uvCwc > 0 ){
+                        document.getElementById('p_uvCwc').innerText= uvCwc
+                        document.getElementById('ea_uvCwc').innerText= uvCwc_ea
+                    }else{
+                        document.getElementById('p_uvCwc').innerText= '-'
+                        document.getElementById('ea_uvCwc').innerText= '-'
+                    } 
+                    if ( lastData.price_uvCc > 0 ){ 
+                        document.getElementById('p_uvCc').innerText= uvCc
+                        document.getElementById('ea_uvCc').innerText= uvCc_ea
+                    }else{
+                        document.getElementById('p_uvCc').innerText= '-'
+                        document.getElementById('ea_uvCc').innerText= '-'
+                    } 
+                    if ( lastData.price_uvBlack > 0 ){ 
+                        document.getElementById('p_uvBlack').innerText= uvBlack
+                        document.getElementById('ea_uvBlack').innerText= uvBlack_ea
+                    }else{
+                        document.getElementById('p_uvBlack').innerText= '-'
+                        document.getElementById('ea_uvBlack').innerText= '-'
+                    } 
+                    
+                    if (lastData.err){
+                        document.getElementById('err').innerText= lastData.err
+                    }else{
+                        document.getElementById('err').innerText= ''
+                    }
+
                 }
-            }
-            if ( h_frame.style.display === "block" ){
-                for (let i = 0; i < sel_frame.length; i++) {
-                    sel_frame[i].selected ? mode = sel_frame[i].value : {}
-                }
-            }
-            if( h_cloth.style.display === "block" ){
-                for (let i = 0; i < sel_cloth.length; i++) {
-                    sel_cloth[i].selected ? mode = sel_cloth[i].value : {}
-                }
-            }
-            if( h_clothBig.style.display === "block" ){
-                
-            }           
-            
-            if ( width === "" || length === "") {                
-                alert('치수를 기입하세요');
-            } else if ( sel_paper === null || sel_paper === '원단종류') {
-                alert('원단종류를 선택하세요');
-            } else {
-                
-                let ink = 'water'
-                let lastData; 
-
-                if ( nameClass === 'option frame' ){
-
-                    lastData = findFrame( width, length, paper, mode )
-
-                }else if ( nameClass === 'option cloth' ){
-                    
-                    lastData = findCloth( length, paper, mode)
-
-                }else if ( nameClass === 'option clothBig' ){
-                    
-                    lastData = findClothPlus( width, length, paper )
-
-                }else if ( nameClass === 'option sameData' ){
-                    
-                    lastData = findClothSameData( length, ea, paper  )
-
-                }else if ( nameClass === 'option sheet' ){
-                    
-                    lastData = findSheet( width, length, paper, mode )
-
-                }else if ( nameClass === 'option rubber' ){
-                    
-                    lastData = findRubber( width, length, paper, rubber_width )
-
-                }
-                
-                let upLine =100; //10의 자리에서 올림
-
-                let hebe = numComma( Math.ceil( lastData.hebe * 10 ) / 10); //헤베는 소수점2자리에서 올림 해서 소수1자리까지 구함
-                let water = numComma( Math.ceil( lastData.price_water / upLine ) * upLine);
-                let solvent = numComma( Math.ceil( lastData.price_solvent / upLine ) * upLine);
-                let latex = numComma( Math.ceil( lastData.price_latex / upLine ) * upLine);
-                let uvW = numComma( Math.ceil( lastData.price_uvW / upLine ) * upLine);
-                let uvC = numComma( Math.ceil( lastData.price_uvC / upLine ) * upLine);
-                let uvCw = numComma( Math.ceil( lastData.price_uvCw / upLine ) * upLine);
-                let uvCwc = numComma( Math.ceil( lastData.price_uvCwc / upLine ) * upLine);
-                let uvCc = numComma( Math.ceil( lastData.price_uvCc / upLine ) * upLine);
-                let uvBlack = numComma( Math.ceil( lastData.price_uvBlack / upLine ) * upLine);
-
-                
-                lastData.hebe > 0 ? document.getElementById('hebe').innerText= hebe : document.getElementById('hebe').innerText= '-'
-                lastData.price_water > 0 ? document.getElementById('p_water').innerText= water : document.getElementById('p_water').innerText= '-'
-                lastData.price_solvent > 0 ? document.getElementById('p_solvent').innerText= solvent : document.getElementById('p_solvent').innerText= '-'
-                lastData.price_latex > 0 ? document.getElementById('p_latex').innerText= latex : document.getElementById('p_latex').innerText= '-'
-                lastData.price_uvW > 0 ? document.getElementById('p_uvW').innerText= uvW : document.getElementById('p_uvW').innerText= '-'
-                lastData.price_uvC > 0 ? document.getElementById('p_uvC').innerText= uvC : document.getElementById('p_uvC').innerText= '-'
-                lastData.price_uvCw > 0 ? document.getElementById('p_uvCw').innerText= uvCw : document.getElementById('p_uvCw').innerText= '-'
-                lastData.price_uvCwc > 0 ? document.getElementById('p_uvCwc').innerText= uvCwc : document.getElementById('p_uvCwc').innerText= '-'
-                lastData.price_uvCc > 0 ? document.getElementById('p_uvCc').innerText= uvCc : document.getElementById('p_uvCc').innerText= '-'
-                lastData.price_uvBlack > 0 ? document.getElementById('p_uvBlack').innerText= uvBlack : document.getElementById('p_uvBlack').innerText= '-'
-                
+            }catch(e){
+                console.log(e)
             }
         });
 

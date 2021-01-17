@@ -29,9 +29,7 @@ paper.타공썬팅시트 = new Ink(); paper.타공채널시트 = new Ink();
 paper.반사시트 = new Ink(); paper.고무자석 = new Ink();
 
 // 조명후렉스, 그레이후렉스, 메쉬천
-paper.조명후렉스 = new Ink();
-paper.비조명후렉스 = new Ink();
-paper.메쉬천 = new Ink();
+paper.조명후렉스 = new Ink(); paper.비조명후렉스 = new Ink(); paper.메쉬천 = new Ink();
 
 // 현수막
 paper.현수막90폭 = new Ink();   paper.현수막100폭 = new Ink();   paper.현수막106폭 = new Ink();
@@ -310,6 +308,7 @@ function findPrice( sheet, mode ) {
             : price_water = water
     }catch(e){
         price_water = 0
+        // console.log('water : ' + e)
     }
     try{ 
         let solvent = paper[sheet]['solvent'][mode];
@@ -318,6 +317,7 @@ function findPrice( sheet, mode ) {
             : price_solvent = solvent            
     }catch(e){
         price_solvent = 0
+        // console.log('solvent : ' + e)
     }
     try{
         let latex = paper[sheet]['latex'][mode];
@@ -326,6 +326,7 @@ function findPrice( sheet, mode ) {
             : price_latex = latex
     }catch(e){
         price_latex = 0
+        // console.log('latex : ' + e)
     }
     try{
         let uvW = paper[sheet]['uvW'][mode];
@@ -334,6 +335,7 @@ function findPrice( sheet, mode ) {
             : price_uvW = uvW
     }catch(e){
         price_uvW = 0
+        // console.log('uvW : ' + e)
     }
     try{
         let uvC = paper[sheet]['uvC'][mode];
@@ -342,6 +344,7 @@ function findPrice( sheet, mode ) {
             : price_uvC = uvC
     }catch(e){
         price_uvC = 0
+        // console.log(' uvC: ' + e)
     }
     try{
         let uvCw = paper[sheet]['uvCw'][mode];
@@ -350,6 +353,7 @@ function findPrice( sheet, mode ) {
             : price_uvCw = uvCw
     }catch(e){
         price_uvCw = 0
+        // console.log(' uvCw: ' + e)
     }
     try{
         let uvCwc = paper[sheet]['uvCwc'][mode];
@@ -358,15 +362,16 @@ function findPrice( sheet, mode ) {
             : price_uvCwc = uvCwc
     }catch(e){
         price_uvCwc = 0
+        // console.log(' uvCwc: ' + e)
     }
     try{
         let uvCc = paper[sheet]['uvCc'][mode];
         uvCc === NaN || uvCc === undefined            
             ? price_uvCc = 0
             : price_uvCc = uvCc
-
     }catch(e){
         price_uvCc = 0
+        // console.log(' uvCc: ' + e)
     }
     try{
         let uvBlack = paper[sheet]['unBlack'][mode];
@@ -375,6 +380,7 @@ function findPrice( sheet, mode ) {
             : price_uvBlack = uvBlack
     }catch(e){
         price_uvBlack = 0
+        // console.log(' uvBlack: ' + e)
     }
     
     return {     
@@ -396,9 +402,8 @@ function findSheet( width, length, sheet, mode ) {
     let price = findPrice( sheet, mode );
     let hebe = findHebe(width, length);
     
-    return {
-        'width': width,
-        'length': length,
+    let err
+    return {        
         'hebe': hebe,
         'price_water': price.water * hebe,
         'price_solvent': price.solvent * hebe,
@@ -409,6 +414,7 @@ function findSheet( width, length, sheet, mode ) {
         'price_uvCwc': price.uvCwc * hebe,
         'price_uvCc': price.uvCc * hebe,
         'price_uvBlack': price.uvBlack * hebe,          
+        'err': err
     };     
 }
 
@@ -420,14 +426,14 @@ function findFrame( width, length, sheet, mode ){
     let newMode;    
     //조명후렉스  0_출력만 1_출력만(장폭) 2_후렘제작  3_후렘제작(장폭) 4_출력만(누끼) 5_출력만(장폭-누끼) 6_후렘제작(누끼)  7_후렘제작(장폭-누끼)
     
-    width < 220 ? newMode = mode : newMode = mode + 1 ;
+    width < 220 ? newMode = mode : newMode = Number(mode) + 1 ;
     
     let price = findPrice( sheet, newMode );
     let hebe = findHebe(width, length);
     
-    return {
-        'width': width,
-        'length': length,
+    let err
+
+    return {        
         'hebe': hebe,
         'price_water': price.water * hebe,
         'price_solvent': price.solvent * hebe,
@@ -437,7 +443,8 @@ function findFrame( width, length, sheet, mode ){
         'price_uvCw': price.uvCw * hebe,
         'price_uvCwc': price.uvCwc * hebe,
         'price_uvCc': price.uvCc * hebe,
-        'price_uvBlack': price.uvBlack * hebe,          
+        'price_uvBlack': price.uvBlack * hebe,   
+        'err': err       
     };     
 }
 // 현수막가격 구하기
@@ -505,6 +512,8 @@ function findCloth( length, sheet, mode ) { //현수막은 sheet값을 cloth + �
         }        
     }
     
+    let err
+
     return {        
         'hebe': '-',
         'price_water': water,
@@ -516,6 +525,7 @@ function findCloth( length, sheet, mode ) { //현수막은 sheet값을 cloth + �
         'price_uvCwc': uvCwc,
         'price_uvCc': uvCc,
         'price_uvBlack': uvBlack,          
+        'err': err
     };  
 }
 
@@ -556,7 +566,7 @@ function findClothSameData( length, ea, sheet  ) {
 
     } else if ( m >= 1.8 && m < 2.8) { 
 
-        water = price_21M.water
+        water = price_2M.water
         solvent = price_2M.solvent
         latex = price_2M.latex
         uvW = price_2M.uvW
@@ -615,9 +625,9 @@ function findClothSameData( length, ea, sheet  ) {
         uvBlack = price_basic.uvBlack * m
     }
     
-    return {
-        'width': '-',
-        'length': length,
+    let err
+
+    return {        
         'hebe': '-',
         'price_water': water,
         'price_solvent': solvent,
@@ -628,6 +638,7 @@ function findClothSameData( length, ea, sheet  ) {
         'price_uvCwc': uvCwc,
         'price_uvCc': uvCc,
         'price_uvBlack': uvBlack,          
+        'err': err
     };  
 
 }
@@ -644,9 +655,9 @@ function findClothPlus( width, length, sheet ) {
     let price = findPrice( sheet , mode);
     let hebe = findHebe( width, length );
 
-    return {
-        'width': width,
-        'length': length,
+    let err
+
+    return {        
         'hebe': hebe,
         'price_water': price.water * hebe,
         'price_solvent': price.solvent * hebe,
@@ -657,35 +668,31 @@ function findClothPlus( width, length, sheet ) {
         'price_uvCwc': price.uvCwc * hebe,
         'price_uvCc': price.uvCc * hebe,
         'price_uvBlack': price.uvBlack * hebe,          
+        'err': err
     };  
     
     
 }
 
 // 고무자석격 구하기  mode : 0_60폭가격, 1_100폭가격
-function findRubber( length, sheet, rubber_width ) {
-    
-    let mode;
-    
-    rubber_width === 60
-        ? mode = 0
-        : mode = 1
+function findRubber( length, sheet, mode) {
     
     let price = findPrice( sheet , mode);
     
-    return {
-        'width': '-',
-        'length': length,
+    let err
+
+    return {        
         'hebe': '-',
-        'price_water': price.water * length / 100,
-        'price_solvent': price.solvent * length / 100,
-        'price_latex': price.latex * length / 100,
-        'price_uvW': price.uvW * length / 100,
-        'price_uvC': price.uvC * length / 100,
-        'price_uvCw': price.uvCw * length / 100,
-        'price_uvCwc': price.uvCwc * length / 100,
-        'price_uvCc': price.uvCc * length / 100,
-        'price_uvBlack': price.uvBlack * length / 100,        
+        'price_water': price.water * (length / 100 ),
+        'price_solvent': price.solvent * (length / 100),
+        'price_latex': price.latex * (length / 100),
+        'price_uvW': price.uvW * (length / 100),
+        'price_uvC': price.uvC * (length / 100),
+        'price_uvCw': price.uvCw * (length / 100),
+        'price_uvCwc': price.uvCwc * (length / 100),
+        'price_uvCc': price.uvCc * (length / 100),
+        'price_uvBlack': price.uvBlack * (length / 100),  
+        'err': err      
     };  
     
 }
