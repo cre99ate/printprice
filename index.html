@@ -12,12 +12,7 @@
     <div class="head">
         <div class="headtext">
             <h2>출력물계산기</h2>
-        </div>
-        <div class="content_movebtn">
-            <input class="move_btn" type="button" onclick="location.href='channel.html'" value="채널">
-            <input class="move_btn" type="button" onclick="location.href='scasi.html'" value="스카시">
-            <input class="move_btn" type="button" onclick="location.href='lightLed.html'" value="전광판">
-        </div>
+        </div>        
     </div>
     <div class="content">
         <div class="infobox">
@@ -83,7 +78,7 @@
             <div class='method'>
                 <div id="hide-coat" style="display: none;">               
                     <select id='sel-coat'>                                                        
-                        <option  class="selcoat" value="0">출력만(코팅x)</option>
+                        <option  class="selcoat" value="0">출력만_코팅x</option>
                         <option  class="selcoat" value="1" selected="selected">무광코팅</option>
                         <option  class="selcoat" value="2">유광코팅</option>
                         <option  class="selcoat" value="3">유브이코팅</option>                            
@@ -92,17 +87,15 @@
                 </div>
                 <div id="hide-frame" style="display: none;">                
                     <select id='sel-frame'>                                
-                        <!-- 0_출력만 1_출력만(장폭) 2_후렘제작  3_후렘제작(장폭) 4_출력만(누끼) 5_출력만(장폭-누끼) 6_후렘제작(누끼)  7_후렘제작(장폭-누끼) -->                        
-                        <option  class="selframe" value="0" selected="selected">출력만</option>
-                        <option  class="selframe" value="2">후레임제작</option>
-                        <option  class="selframe" value="4">출력만(풀누끼)</option>
-                        <option  class="selframe" value="6">후레임제작(풀누끼)</option>                                                
+                        <!-- 0_출력만 1_출력만(장폭) 2_후렘제작  3_후렘제작(장폭) ) -->                        
+                        <option  class="selframe" value="0" selected="selected">출력만_제작x</option>
+                        <option  class="selframe" value="2">후레임제작</option>                                             
                     </select>                
                 </div>
                 <div id="hide-rubber" style="display: none;">                
                     <select id='sel-rubber'>                            
-                        <option  class="selrubber" value="0">60폭</option>
-                        <option  class="selrubber" value="1">100폭</option>                        
+                        <option  class="selrubber" value="0">폭60cm</option>
+                        <option  class="selrubber" value="1">폭100cm</option>                        
                     </select>                
                 </div>
                 <div id="hide-clothBig" style="display: none;">                
@@ -146,6 +139,7 @@
             <button id="btn">계산하기</button>
         </div>
         <div class="infonumber">
+            <div id="err"></div>  
             <table>
                 <th class="tb-ink">잉크종류</th>
                 <th class="tb-price">장당가격</th>
@@ -161,44 +155,52 @@
                     <td class="tb-sum" id="ea_solvent"></td>                    
                 </tr>
                 <tr> <!--3번째줄 -->
+                    <td class="tb-ink">솔벤_조명후렉스누끼</td>
+                    <td class="tb-price" id="p_solventFull"></td>
+                    <td class="tb-sum" id="ea_solventFull"></td>                    
+                </tr>
+                <tr> <!--4번째줄 -->
                     <td class="tb-ink">라텍스</td>
                     <td class="tb-price" id="p_latex"></td>
                     <td class="tb-sum" id="ea_latex"></td>                    
                 </tr>
-                <tr> <!--4번째줄 -->
+                <tr> <!--5번째줄 -->
+                    <td class="tb-ink">라텍스_조명후렉스누끼</td>
+                    <td class="tb-price" id="p_latexFull"></td>
+                    <td class="tb-sum" id="ea_latexFull"></td>                    
+                </tr>
+                <tr> <!--6번째줄 -->
                     <td class="tb-ink">유브이_화이트만</td>
                     <td class="tb-price" id="p_uvW"></td>
                     <td class="tb-sum" id="ea_uvW"></td>                    
                 </tr>
-                <tr> <!--5번째줄 -->
+                <tr> <!--7번째줄 -->
                     <td class="tb-ink">유브이_칼라만</td>
                     <td class="tb-price" id="p_uvC"></td>
                     <td class="tb-sum" id="ea_uvC"></td>                    
                 </tr>
-                <tr> <!--6번째줄 -->
+                <tr> <!--8번째줄 -->
                     <td class="tb-ink">유브이_2레이어</td>
                     <td class="tb-price" id="p_uvCw"></td>
                     <td class="tb-sum" id="ea_uvCw"></td>                    
                 </tr>
-                <tr> <!--7번째줄 -->
+                <tr> <!--9번째줄 -->
                     <td class="tb-ink">유브이_3레이어</td>
                     <td class="tb-price" id="p_uvCwc"></td>
                     <td class="tb-sum" id="ea_uvCwc"></td>                    
                 </tr>
-                <tr> <!--8번째줄 -->
+                <tr> <!--10번째줄 -->
                     <td class="tb-ink">유브이_후렉스조명모드</td>
                     <td class="tb-price" id="p_uvCc"></td>
                     <td class="tb-sum" id="ea_uvCc"></td>                    
                 </tr>
-                <tr> <!--9번째줄 -->
+                <tr> <!--11번째줄 -->
                     <td class="tb-ink">유브이_후렉스차폐모드</td>
                     <td class="tb-price" id="p_uvBlack"></td>
                     <td class="tb-sum" id="ea_uvBlack"></td>                    
                 </tr>
-            </table>            
+            </table> 
         </div>
-        <div id="err"></div>
-        
     </div>
     <script type="text/javascript" src="ss.js"></script>
     <script>
@@ -315,9 +317,15 @@
             
             document.getElementById('p_solvent').innerText = ""
             document.getElementById('ea_solvent').innerText = ""
+
+            document.getElementById('p_solventFull').innerText = ""
+            document.getElementById('ea_solventFull').innerText = ""
             
             document.getElementById('p_latex').innerText = ""
             document.getElementById('ea_latex').innerText = ""
+
+            document.getElementById('p_latexFull').innerText = ""
+            document.getElementById('ea_latexFull').innerText = ""
 
             document.getElementById('p_uvW').innerText = ""
             document.getElementById('ea_uvW').innerText = ""
@@ -384,7 +392,7 @@
                     }
                 }         
                 
-                console.log( nameClass, paper, mode)
+                // console.log( nameClass, paper, mode)
 
                 if ( width === "" || length === "") {                
                     alert('치수를 기입하세요');
@@ -427,7 +435,9 @@
                     
                     let water = numComma( Math.ceil( lastData.price_water / upLine ) * upLine);
                     let solvent = numComma( Math.ceil( lastData.price_solvent / upLine ) * upLine);
+                    let solventFull = numComma( Math.ceil( lastData.price_solventFull / upLine ) * upLine);
                     let latex = numComma( Math.ceil( lastData.price_latex / upLine ) * upLine);
+                    let latexFull = numComma( Math.ceil( lastData.price_latexFull / upLine ) * upLine);
                     let uvW = numComma( Math.ceil( lastData.price_uvW / upLine ) * upLine);
                     let uvC = numComma( Math.ceil( lastData.price_uvC / upLine ) * upLine);
                     let uvCw = numComma( Math.ceil( lastData.price_uvCw / upLine ) * upLine);
@@ -437,7 +447,9 @@
                     
                     let water_ea = numComma( Math.ceil( lastData.price_water / upLine ) * upLine * ea );
                     let solvent_ea = numComma( Math.ceil( lastData.price_solvent / upLine ) * upLine * ea );
+                    let solventFull_ea = numComma( Math.ceil( lastData.price_solventFull / upLine ) * upLine * ea );
                     let latex_ea = numComma( Math.ceil( lastData.price_latex / upLine ) * upLine * ea );
+                    let latexFull_ea = numComma( Math.ceil( lastData.price_latexFull / upLine ) * upLine * ea );
                     let uvW_ea = numComma( Math.ceil( lastData.price_uvW / upLine ) * upLine * ea );
                     let uvC_ea = numComma( Math.ceil( lastData.price_uvC / upLine ) * upLine * ea );
                     let uvCw_ea = numComma( Math.ceil( lastData.price_uvCw / upLine ) * upLine * ea );
@@ -464,12 +476,26 @@
                         document.getElementById('p_solvent').innerText= '-'
                         document.getElementById('ea_solvent').innerText= '-'
                     } 
+                    if ( lastData.price_solventFull > 0 ){ 
+                        document.getElementById('p_solventFull').innerText= solventFull
+                        document.getElementById('ea_solventFull').innerText= solventFull_ea
+                    }else{
+                        document.getElementById('p_solventFull').innerText= '-'
+                        document.getElementById('ea_solventFull').innerText= '-'
+                    } 
                     if ( lastData.price_latex > 0 ){ 
                         document.getElementById('p_latex').innerText= latex
                         document.getElementById('ea_latex').innerText= latex_ea
                     }else{
                         document.getElementById('p_latex').innerText= '-'
                         document.getElementById('ea_latex').innerText= '-'
+                    } 
+                    if ( lastData.price_latexFull > 0 ){ 
+                        document.getElementById('p_latexFull').innerText= latexFull
+                        document.getElementById('ea_latexFull').innerText= latexFull_ea
+                    }else{
+                        document.getElementById('p_latexFull').innerText= '-'
+                        document.getElementById('ea_latexFull').innerText= '-'
                     } 
                     if ( lastData.price_uvW > 0 ){ 
                         document.getElementById('p_uvW').innerText= uvW
@@ -514,8 +540,8 @@
                         document.getElementById('ea_uvBlack').innerText= '-'
                     } 
                     
-                    if (lastData.err){
-                        document.getElementById('err').innerText= lastData.err
+                    if ( nameClass === 'option sameData' && ea < 5){
+                        document.getElementById('err').innerText= '- 최소 5장이상 주문가능 -'
                     }else{
                         document.getElementById('err').innerText= ''
                     }

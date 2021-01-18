@@ -1,15 +1,17 @@
 
 class Ink {
-    constructor( water, solvent, latex, uvW, uvC, uvCw, uvCwc, uvCc, uvBlack ){
+    constructor( water, solvent, solventFull, latex, latexFull, uvW, uvC, uvCw, uvCwc, uvCc, uvBlack ){
         this.water = water;        
         this.solvent = solvent;
+        this.solventFull = solventFull;
         this.latex = latex;
+        this.latexFull = latexFull;
         this.uvW = uvW;
         this.uvC = uvC;
         this.uvCw = uvCw;
         this.uvCwc = uvCwc;  //후렉스주야조명모드 겸 일반 CWC모드
         this.uvCc = uvCc;  //후렉스조명모드
-        this.uvBlack = uvBlack;  //후렉스 차폐모드
+        this.uvBlack = uvBlack;  //후렉스 차폐모드        
     }
 }
 
@@ -56,7 +58,7 @@ paper.대형텐트천 = new Ink();
     // 코팅모드      :   0_출력만,   1_무광,   2_유광,   3_유브이,  4_양면   
     // 현수막 모드   :   0_기본가격, 1_1미터,  2_2미터,  3_3미터,   4_4미터,   5_5미터
     // 대현현수막 모드 : 0_기본가격, 1_30헤베이상    
-    // 후레임 모드   :   0_출력만,   1_출력만(장폭),  2_제작,  3_제작(장폭),  4_출력(풀),  5_출력(풀-장폭),  6_제작(풀),  7_제작(풀-장폭)
+    // 후레임 모드   :   0_출력만,   1_출력만(장폭),  2_제작,  3_제작(장폭)  
     // 고무자석 모드 :   0_60폭,     1_100폭
 
 //유포지 upo
@@ -135,17 +137,19 @@ paper.반사시트.latex = [ 20000, 23000, 23000, 23000, 46000 ];
 //고무자석시트 rubber
 paper.고무자석.uvC = [ 11000, 20000 ];
 
-//조명후렉스  0_출력만 1_출력만(장폭) 2_후렘제작  3_후렘제작(장폭) 4_출력만(누끼) 5_출력만(장폭-누끼) 6_후렘제작(누끼)  7_후렘제작(장폭-누끼)
-paper.조명후렉스.solvent = [ 5000, 9000, 4000, 8000, 6000, 10000, 5000, 9000 ];
-paper.조명후렉스.latex = [ 7000, 11000, 6000, 10000, 8000, 12000, 7000, 11000 ];
+//조명후렉스  0_출력만 1_출력만(장폭) 2_후렘제작  3_후렘제작(장폭) 
+paper.조명후렉스.solvent = [ 5000, 9000, 4000, 8000 ];
+paper.조명후렉스.solventFull = [ 6000, 10000, 5000, 9000 ];
+paper.조명후렉스.latex = [ 7000, 11000, 6000, 10000 ];
+paper.조명후렉스.latexFull = [ 8000, 12000, 7000, 11000 ];
 paper.조명후렉스.uvC = [ 5000, 8000 , 4000, 7000 ];
 paper.조명후렉스.uvCwc = [ 7000, 10000, 6000, 9000 ];
 paper.조명후렉스.uvCc = [ 6000, 9000, 5000, 8000 ];
 paper.조명후렉스.uvBlack = [ 8000, 11000, 7000, 10000 ];
 
 //그레이후렉스 
-paper.비조명후렉스.solvent = [ 5000, 9000, 4000, 8000, 6000, 10000, 5000, 9000 ];
-paper.비조명후렉스.latex = [ 7000, 11000, 6000, 10000, 8000, 12000, 7000, 11000 ];
+paper.비조명후렉스.solvent = [ 5000, 9000, 4000, 8000 ];
+paper.비조명후렉스.latex = [ 7000, 11000, 6000, 10000 ];
 paper.비조명후렉스.uvC = [ 5000, 8000, 4000, 7000 ];
 
 //메쉬천 
@@ -297,87 +301,106 @@ function findHebe(width, length){
 // 가격 구하기
 function findPrice( sheet, mode ) {
     
-    let price_water, price_solvent, price_latex;
+    let price_water;
+    let price_solvent, price_latex, price_solventFull, price_latexFull;
     let price_uvW, price_uvC, price_uvCw;
     let price_uvCwc, price_uvCc, price_uvBlack;
     
     try{
-        let water = paper[sheet]['water'][mode];
-        water === NaN || water === undefined
+        let ink = paper[sheet]['water'][mode];
+        ink === NaN || ink === undefined
             ? price_water = 0    
-            : price_water = water
+            : price_water = ink
     }catch(e){
         price_water = 0
         // console.log('water : ' + e)
     }
     try{ 
-        let solvent = paper[sheet]['solvent'][mode];
-        solvent === NaN || solvent === undefined 
+        let ink = paper[sheet]['solvent'][mode];
+        ink === NaN || ink === undefined 
             ? price_solvent = 0    
-            : price_solvent = solvent            
+            : price_solvent = ink            
     }catch(e){
         price_solvent = 0
         // console.log('solvent : ' + e)
     }
+    try{ 
+        let ink = paper[sheet]['solventFull'][mode];
+        ink === NaN || ink === undefined 
+            ? price_solventFull = 0    
+            : price_solventFull = ink
+    }catch(e){
+        price_solventFull = 0
+        // console.log('solventFull : ' + e)
+    }
     try{
-        let latex = paper[sheet]['latex'][mode];
-        latex === NaN || latex === undefined                
+        let ink = paper[sheet]['latex'][mode];
+        ink === NaN || ink === undefined                
             ? price_latex = 0
-            : price_latex = latex
+            : price_latex = ink
     }catch(e){
         price_latex = 0
         // console.log('latex : ' + e)
     }
     try{
-        let uvW = paper[sheet]['uvW'][mode];
-        uvW === NaN || uvW === undefined            
+        let ink = paper[sheet]['latexFull'][mode];
+        ink === NaN || ink === undefined                
+            ? price_latexFull = 0
+            : price_latexFull = ink
+    }catch(e){
+        price_latexFull = 0
+        // console.log('latexFull : ' + e)
+    }
+    try{
+        let ink = paper[sheet]['uvW'][mode];
+        ink === NaN || ink === undefined            
             ? price_uvW = 0
-            : price_uvW = uvW
+            : price_uvW = ink
     }catch(e){
         price_uvW = 0
         // console.log('uvW : ' + e)
     }
     try{
-        let uvC = paper[sheet]['uvC'][mode];
-        uvC === NaN || uvC === undefined            
+        let ink = paper[sheet]['uvC'][mode];
+        ink === NaN || ink === undefined            
             ? price_uvC = 0
-            : price_uvC = uvC
+            : price_uvC = ink
     }catch(e){
         price_uvC = 0
         // console.log(' uvC: ' + e)
     }
     try{
-        let uvCw = paper[sheet]['uvCw'][mode];
-        uvCw === NaN || uvCw === undefined            
+        let ink = paper[sheet]['uvCw'][mode];
+        ink === NaN || ink === undefined            
             ? price_uvCw = 0
-            : price_uvCw = uvCw
+            : price_uvCw = ink
     }catch(e){
         price_uvCw = 0
         // console.log(' uvCw: ' + e)
     }
     try{
-        let uvCwc = paper[sheet]['uvCwc'][mode];
-        uvCwc === NaN || uvCwc === undefined            
+        let ink = paper[sheet]['uvCwc'][mode];
+        ink === NaN || ink === undefined            
             ? price_uvCwc = 0
-            : price_uvCwc = uvCwc
+            : price_uvCwc = ink
     }catch(e){
         price_uvCwc = 0
         // console.log(' uvCwc: ' + e)
     }
     try{
-        let uvCc = paper[sheet]['uvCc'][mode];
-        uvCc === NaN || uvCc === undefined            
+        let ink = paper[sheet]['uvCc'][mode];
+        ink === NaN || ink === undefined            
             ? price_uvCc = 0
-            : price_uvCc = uvCc
+            : price_uvCc = ink
     }catch(e){
         price_uvCc = 0
         // console.log(' uvCc: ' + e)
     }
     try{
-        let uvBlack = paper[sheet]['uvBlack'][mode];
-        uvBlack === NaN || uvBlack === undefined    
+        let ink = paper[sheet]['uvBlack'][mode];
+        ink === NaN || ink === undefined    
             ? price_black = 0
-            : price_uvBlack = uvBlack
+            : price_uvBlack = ink
     }catch(e){
         price_uvBlack = 0
         // console.log(' uvBlack: ' + e)
@@ -386,7 +409,9 @@ function findPrice( sheet, mode ) {
     return {     
         'water': price_water,
         'solvent': price_solvent,
+        'solventFull': price_solventFull,
         'latex': price_latex,
+        'latexFull': price_latexFull,
         'uvW': price_uvW,
         'uvC': price_uvC,
         'uvCw': price_uvCw,
@@ -407,7 +432,9 @@ function findSheet( width, length, sheet, mode ) {
         'hebe': hebe,
         'price_water': price.water * hebe,
         'price_solvent': price.solvent * hebe,
+        'price_solventFull': price.solventFull * hebe,
         'price_latex': price.latex * hebe,
+        'price_latexFull': price.latexFull * hebe,
         'price_uvW': price.uvW * hebe,
         'price_uvC': price.uvC * hebe,
         'price_uvCw': price.uvCw * hebe,
@@ -424,7 +451,7 @@ function findSheet( width, length, sheet, mode ) {
 function findFrame( width, length, sheet, mode ){
         
     let newMode;    
-    //조명후렉스  0_출력만 1_출력만(장폭) 2_후렘제작  3_후렘제작(장폭) 4_출력만(누끼) 5_출력만(장폭-누끼) 6_후렘제작(누끼)  7_후렘제작(장폭-누끼)
+    //조명후렉스  0_출력만 1_출력만(장폭) 2_후렘제작  3_후렘제작(장폭) 
     
     width < 220 ? newMode = mode : newMode = Number(mode) + 1 ;
     
@@ -437,7 +464,9 @@ function findFrame( width, length, sheet, mode ){
         'hebe': hebe,
         'price_water': price.water * hebe,
         'price_solvent': price.solvent * hebe,
+        'price_solventFull': price.solventFull * hebe,
         'price_latex': price.latex * hebe,
+        'price_latexFull': price.latexFull * hebe,
         'price_uvW': price.uvW * hebe,
         'price_uvC': price.uvC * hebe,
         'price_uvCw': price.uvCw * hebe,
@@ -451,7 +480,8 @@ function findFrame( width, length, sheet, mode ){
 function findCloth( length, sheet, mode ) { //현수막은 sheet값을 cloth + 원단폭값을 합한것으로 받는다.
     
     let price, price2;
-    let water, solvent, latex;
+    let water;
+    let solvent, latex, solventFull, latexFull;
     let uvW, uvC, uvCw;
     let uvCwc, uvCc, uvBlack;
     
@@ -465,7 +495,9 @@ function findCloth( length, sheet, mode ) { //현수막은 sheet값을 cloth + �
 
         water = price.water * lens
         solvent = price.solvent * lens
+        solventFull = price.solventFull * lens
         latex = price.latex * lens
+        latexFull = price.latexFull * lens
         uvW = price.uvW * lens
         uvC = price.uvC * lens
         uvCw = price.uvCw * lens
@@ -491,7 +523,9 @@ function findCloth( length, sheet, mode ) { //현수막은 sheet값을 cloth + �
             
             water = price.water + ( plusM * ( price2.water - price.water) / 10 )
             solvent = price.solvent + ( plusM * ( price2.solvent - price.solvent) / 10 )
+            solventFull = price.solventFull + ( plusM * ( price2.solventFull - price.solventFull) / 10 )
             latex = price.latex + ( plusM * ( price2.latex - price.latex) / 10 )
+            latexFull = price.latexFull + ( plusM * ( price2.latexFull - price.latexFull) / 10 )
             uvW = price.uvW + ( plusM * ( price2.uvW - price.uvW) / 10 )
             uvC = price.uvC + ( plusM * ( price2.uvC - price.uvC) / 10 )
             uvCw = price.uvCw + ( plusM * ( price2.uvCw - price.uvCw) / 10 )
@@ -502,7 +536,9 @@ function findCloth( length, sheet, mode ) { //현수막은 sheet값을 cloth + �
         }else{            
             water = price.water
             solvent = price.solvent
+            solventFull = price.solventFull
             latex = price.latex
+            latexFull = price.latexFull
             uvW = price.uvW
             uvC = price.uvC
             uvCw = price.uvCw
@@ -518,7 +554,9 @@ function findCloth( length, sheet, mode ) { //현수막은 sheet값을 cloth + �
         'hebe': '-',
         'price_water': water,
         'price_solvent': solvent,
+        'price_solventFull': solventFull,
         'price_latex': latex,
+        'price_latexFull': latexFull,
         'price_uvW': uvW,
         'price_uvC': uvC,
         'price_uvCw': uvCw,
@@ -532,7 +570,8 @@ function findCloth( length, sheet, mode ) { //현수막은 sheet값을 cloth + �
 //현수막동일데이터 단가구하기  옵션에서 저가/보급/수량/동일내용이 지정되어야함
 function findClothSameData( length, ea, sheet  ) {
 
-    let water, solvent, latex;
+    let water;
+    let solvent, latex, solventFull, latexFull;
     let uvW, uvC, uvCw;
     let uvCwc, uvCc, uvBlack;
     
@@ -556,7 +595,9 @@ function findClothSameData( length, ea, sheet  ) {
 
         water = price_1M.water
         solvent = price_1M.solvent
+        solventFull = price_1M.solventFull
         latex = price_1M.latex
+        latexFull = price_1M.latexFull
         uvW = price_1M.uvW
         uvC = price_1M.uvC
         uvCw = price_1M.uvCw
@@ -568,7 +609,9 @@ function findClothSameData( length, ea, sheet  ) {
 
         water = price_2M.water
         solvent = price_2M.solvent
+        solventFull = price_2M.solventFull
         latex = price_2M.latex
+        latexFull = price_2M.latexFull
         uvW = price_2M.uvW
         uvC = price_2M.uvC
         uvCw = price_2M.uvCw
@@ -580,7 +623,9 @@ function findClothSameData( length, ea, sheet  ) {
 
         water = price_3M.water
         solvent = price_3M.solvent
+        solventFull = price_3M.solventFull
         latex = price_3M.latex
+        latexFull = price_3M.latexFull
         uvW = price_3M.uvW
         uvC = price_3M.uvC
         uvCw = price_3M.uvCw
@@ -592,7 +637,9 @@ function findClothSameData( length, ea, sheet  ) {
 
         water = price_4M.water
         solvent = price_4M.solvent
+        solventFull = price_4M.solventFull
         latex = price_4M.latex
+        latexFull = price_4M.latexFull
         uvW = price_4M.uvW
         uvC = price_4M.uvC
         uvCw = price_4M.uvCw
@@ -604,7 +651,9 @@ function findClothSameData( length, ea, sheet  ) {
         
         water = price_5M.water
         solvent = price_5M.solvent
+        solventFull = price_5M.solventFull
         latex = price_5M.latex
+        latexFull = price_5M.latexFull
         uvW = price_5M.uvW
         uvC = price_5M.uvC
         uvCw = price_5M.uvCw
@@ -616,7 +665,9 @@ function findClothSameData( length, ea, sheet  ) {
         
         water = price_basic.water * m
         solvent = price_basic.solvent * m
+        solventFull = price_basic.solventFull * m
         latex = price_basic.latex * m
+        latexFull = price_basic.latexFull * m
         uvW = price_basic.uvW * m
         uvC = price_basic.uvC * m
         uvCw = price_basic.uvCw * m
@@ -631,7 +682,9 @@ function findClothSameData( length, ea, sheet  ) {
         'hebe': '-',
         'price_water': water,
         'price_solvent': solvent,
+        'price_solventFull': solventFull,
         'price_latex': latex,
+        'price_latexFull': latexFull,
         'price_uvW': uvW,
         'price_uvC': uvC,
         'price_uvCw': uvCw,
@@ -661,7 +714,9 @@ function findClothPlus( width, length, sheet ) {
         'hebe': hebe,
         'price_water': price.water * hebe,
         'price_solvent': price.solvent * hebe,
+        'price_solventFull': price.solventFull * hebe,
         'price_latex': price.latex * hebe,
+        'price_latexFull': price.latexFull * hebe,
         'price_uvW': price.uvW * hebe,
         'price_uvC': price.uvC * hebe,
         'price_uvCw': price.uvCw * hebe,
@@ -685,7 +740,9 @@ function findRubber( length, sheet, mode) {
         'hebe': '-',
         'price_water': price.water * (length / 100 ),
         'price_solvent': price.solvent * (length / 100),
+        'price_solventFull': price.solventFull * (length / 100),
         'price_latex': price.latex * (length / 100),
+        'price_latexFull': price.latexFull * (length / 100),
         'price_uvW': price.uvW * (length / 100),
         'price_uvC': price.uvC * (length / 100),
         'price_uvCw': price.uvCw * (length / 100),
@@ -712,18 +769,20 @@ function aa(){
     // let dd = findClothSameData( 560, 14, '동일데이터_저가'  )
     let dd =findClothPlus( 100, 300, '대형텐트천')
 
-
     console.log('width :' + dd.width);
     console.log('length: ' + dd.length);
     console.log('hebe: ' + dd.hebe);
     console.log('price_water :'+ dd.price_water);
     console.log('price_solvent : ' + dd.price_solvent);    
+    console.log('price_solventFull : ' + dd.price_solventFull);    
     console.log('price_latex : ' + dd.price_latex);
+    console.log('price_latexFull : ' + dd.price_latexFull);
     console.log('price_uvW :' + dd.price_uvW);
     console.log('price_uvC :' + dd.price_uvC);
     console.log('price_uvCw :' + dd.price_uvCw);
     console.log('price_uvCwc : ' + dd.price_uvCwc);
     console.log('price_uvCc :' + dd.price_uvCc);
     console.log('price_uvBlack :' + dd.price_uvBlack);  
-    
+    console.log('-----------------------------')
+    paper.일반시트.price()
 }

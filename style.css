@@ -14,25 +14,13 @@ body{
     color: white;
     justify-content: center;
 }
-.content_movebtn{
-    padding-left: 1em;
-}
-.move_btn{
-    width: 40px;
-    height: 30px;
-    font-size: 11px;
-    font-weight: bold;
-    background-color: #ee84b7;
-    border: none;
-    border-radius: 0.5rem;
-    color: white;
-}
+
 .content{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-
+    width: 100%;   
+    
 }
 
 .infobox{       
@@ -86,7 +74,7 @@ table {
 border-collapse: collapse;
 text-align: right;
 line-height: 1.5;
-margin : 10px 0 50px 0;
+margin : 10px 20% 5px 20%;
 font-size: 0.9em;
 
 }
@@ -111,7 +99,12 @@ vertical-align: top;
 border-bottom: 1px solid #ccc; 
 }
 
-
+#err{
+    font-size: 0.9em;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: bold;
+}
 select{    
     width: 200px;
     height: 30px;    
@@ -126,10 +119,12 @@ select{
 }
 .infonumber{
     display: flex;
-    flex-direction: row;    
+    flex-direction: column;    
     justify-content: center;
     width: 100%;
     background-color: beige;
+    text-align: center;
+    padding-bottom: 20px
 }
 
 .input{
